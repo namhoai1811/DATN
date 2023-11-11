@@ -56,7 +56,7 @@ export const PostsCrawlTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  Name1
                 </TableCell>
                 <TableCell>
                   Email
