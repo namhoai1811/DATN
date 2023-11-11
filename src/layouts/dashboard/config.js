@@ -28,6 +28,15 @@ export const items = [
     )
   },
   {
+    title: 'Post  Management',
+    path: '/post-crawl',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
     title: 'Crawl Management',
     path: '/companies',
     icon: (
