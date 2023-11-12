@@ -19,8 +19,8 @@ export const items = [
     )
   },
   {
-    title: 'User Management',
-    path: '/customers',
+    title: 'User Account',
+    path: '/user',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -28,8 +28,26 @@ export const items = [
     )
   },
   {
-    title: 'Post  Management',
+    title: 'Admin Account',
+    path: '/admin',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Post  Crawl',
     path: '/post-crawl',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Post  User',
+    path: '/post-user',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />

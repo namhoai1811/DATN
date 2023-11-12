@@ -17,7 +17,7 @@ import {
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 
-export const PostsCrawlTable = (props) => {
+export const UserTable = (props) => {
   const {
     count = 0,
     items = [],
@@ -56,22 +56,13 @@ export const PostsCrawlTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name1
+                  Name
                 </TableCell>
                 <TableCell>
                   Email
                 </TableCell>
                 <TableCell>
                   Location
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Phone
                 </TableCell>
                 <TableCell>
                   Phone
@@ -128,15 +119,6 @@ export const PostsCrawlTable = (props) => {
                       {customer.phone}
                     </TableCell>
                     <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
                       {createdAt}
                     </TableCell>
                   </TableRow>
@@ -159,7 +141,7 @@ export const PostsCrawlTable = (props) => {
   );
 };
 
-PostsCrawlTable.propTypes = {
+UserTable.propTypes = {
   count: PropTypes.number,
   items: PropTypes.array,
   onDeselectAll: PropTypes.func,

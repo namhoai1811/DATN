@@ -63,7 +63,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Companies | Devias Kit
+        Companies
       </title>
     </Head>
     <Box
