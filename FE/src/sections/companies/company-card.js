@@ -212,17 +212,7 @@ export const CompanyCard = (props) => {
                 variant="standard"
                 value={data.link_url}
               />
-              <TextField
-                autoFocus
-                margin="dense"
-                id="link_image"
-                label="Image"
-                type="text"
-                fullWidth
-                variant="standard"
-                value={data.link_image}
-              />
-
+      
               <TextField
                 autoFocus
                 margin="dense"
