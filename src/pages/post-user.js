@@ -37,6 +37,78 @@ const data = [
     address: "Địa chỉ: Đường Thái Thị Bôi, Phường Chính Gián, Thanh Khê, Đà Nẵng",
     link_url: "https://bds123.vn/can-ban-nha-kiet-gan-duong-thai-thi-boi-pr740015.html",
   },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "1",
+    description:
+      "Nhà chính chủ mặt tiền đường tx 37 phường thạnh Xuân quận 12 một trệt một lững 6 x 11 full thổ cư 6 x 17. Thuộc khu dân cư mới. Bao tách sổ. Gần chợ gần trường.",
+    title: "Cần bán gấp nhà thừa kế chính chủ",
+    price: "6.5 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/01/img-20230731-130256-1_1696162393.jpg",
+    address: "Địa chỉ: Phường Thạnh Xuân, Quận 12, Hồ Chí Minh",
+    link_url: "https://bds123.vn/can-ban-gap-nha-thua-ke-chinh-chu-pr730697.html",
+  },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "2",
+    description:
+    "Chính chủ cần bán nhà 2 tầng - 1 tum kiệt Thái Thị Bôi - Thanh Khê",
+    title: "Cần bán nhà kiệt gần đường Thái Thị Bôi",
+    price: "2.45 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/20/z4801597864353-b7d6acf0185e5b54c687b4bce536d56e_1697791668.jpg",
+    address: "Địa chỉ: Đường Thái Thị Bôi, Phường Chính Gián, Thanh Khê, Đà Nẵng",
+    link_url: "https://bds123.vn/can-ban-nha-kiet-gan-duong-thai-thi-boi-pr740015.html",
+  },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "1",
+    description:
+      "Nhà chính chủ mặt tiền đường tx 37 phường thạnh Xuân quận 12 một trệt một lững 6 x 11 full thổ cư 6 x 17. Thuộc khu dân cư mới. Bao tách sổ. Gần chợ gần trường.",
+    title: "Cần bán gấp nhà thừa kế chính chủ",
+    price: "6.5 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/01/img-20230731-130256-1_1696162393.jpg",
+    address: "Địa chỉ: Phường Thạnh Xuân, Quận 12, Hồ Chí Minh",
+    link_url: "https://bds123.vn/can-ban-gap-nha-thua-ke-chinh-chu-pr730697.html",
+  },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "2",
+    description:
+    "Chính chủ cần bán nhà 2 tầng - 1 tum kiệt Thái Thị Bôi - Thanh Khê",
+    title: "Cần bán nhà kiệt gần đường Thái Thị Bôi",
+    price: "2.45 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/20/z4801597864353-b7d6acf0185e5b54c687b4bce536d56e_1697791668.jpg",
+    address: "Địa chỉ: Đường Thái Thị Bôi, Phường Chính Gián, Thanh Khê, Đà Nẵng",
+    link_url: "https://bds123.vn/can-ban-nha-kiet-gan-duong-thai-thi-boi-pr740015.html",
+  },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "1",
+    description:
+      "Nhà chính chủ mặt tiền đường tx 37 phường thạnh Xuân quận 12 một trệt một lững 6 x 11 full thổ cư 6 x 17. Thuộc khu dân cư mới. Bao tách sổ. Gần chợ gần trường.",
+    title: "Cần bán gấp nhà thừa kế chính chủ",
+    price: "6.5 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/01/img-20230731-130256-1_1696162393.jpg",
+    address: "Địa chỉ: Phường Thạnh Xuân, Quận 12, Hồ Chí Minh",
+    link_url: "https://bds123.vn/can-ban-gap-nha-thua-ke-chinh-chu-pr730697.html",
+  },
+  {
+    id: "5e887ac47eed253091be10cb",
+    user_id : "2",
+    description:
+    "Chính chủ cần bán nhà 2 tầng - 1 tum kiệt Thái Thị Bôi - Thanh Khê",
+    title: "Cần bán nhà kiệt gần đường Thái Thị Bôi",
+    price: "2.45 ty",
+    img_url:
+      "https://bds123.cdn.static123.com/images/thumbs/900x600/fit/2023/10/20/z4801597864353-b7d6acf0185e5b54c687b4bce536d56e_1697791668.jpg",
+    address: "Địa chỉ: Đường Thái Thị Bôi, Phường Chính Gián, Thanh Khê, Đà Nẵng",
+    link_url: "https://bds123.vn/can-ban-nha-kiet-gan-duong-thai-thi-boi-pr740015.html",
+  },
 ];
 
 const useCustomers = (page, rowsPerPage) => {
