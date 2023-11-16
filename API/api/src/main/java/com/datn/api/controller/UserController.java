@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
 
-        User user = userFacade.userQueryById(requestDto.getUserName());
+        User user = userFacade.userQueryByUserName(requestDto.getUserName());
         if(user==null )
             return ResponseEntity.ok("user or password fail");
         if(user.getUserName().equals(requestDto.getUserName())&&user.getPassWord().equals(requestDto.getPassWord()))

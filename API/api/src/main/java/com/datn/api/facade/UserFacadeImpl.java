@@ -14,7 +14,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public  User userQueryById(String userName) {
+    public  User userQueryByUserName(String userName) {
         try {
             List<User> userList = this.userRepository.findByUserName(userName);
             if(!userList.isEmpty()&& userList.get(0) !=null ) {

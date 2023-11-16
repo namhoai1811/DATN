@@ -1,13 +1,8 @@
 package com.datn.api.controller;
 
-import com.datn.api.dto.PostsDto;
-import com.datn.api.dto.UserDto;
 import com.datn.api.facade.PostsFacade;
-import com.datn.api.facade.UserFacade;
 import com.datn.api.model.Posts;
-import com.datn.api.model.User;
 import com.datn.api.repository.PostsRepository;
-import com.datn.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -70,6 +65,15 @@ public class PostsController {
         } else {
             return ResponseEntity.ok("The posts with id: " + postId + " was not found.");
         }
+    }
+
+    @GetMapping("/posts/findByUserId/{userId}")
+    public ResponseEntity getUserByUserid(@PathVariable String userId) {
+
+        List<Posts> posts = postsFacade.postsQueryByUserId(userId);
+        return ResponseEntity.ok(posts);
+
+
     }
     @GetMapping("/posts/delete/{postId}")
     public ResponseEntity getUserById1(@PathVariable String postId) {
