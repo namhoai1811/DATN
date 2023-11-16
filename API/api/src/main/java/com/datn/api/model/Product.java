@@ -1,9 +1,15 @@
 package com.datn.api.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("product")
+@AllArgsConstructor
+@Getter
+@Setter
 public class Product {
 
     @Id

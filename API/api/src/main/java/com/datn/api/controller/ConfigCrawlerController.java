@@ -20,6 +20,7 @@ public class ConfigCrawlerController {
     public ConfigCrawlerController(ConfigCrawlerRepository configCrawlerRepository) {
         this.configCrawlerRepository = configCrawlerRepository;
     }
+
     @GetMapping("/configCrawler/findAll")
     public ResponseEntity<List<ConfigCrawler>> getAllConfigCrawler() {
 

@@ -1,26 +1,48 @@
 package com.datn.api.controller;
 
-import com.datn.api.dto.ProductDto;
+
 import com.datn.api.dto.UserDto;
-import com.datn.api.facade.ProductFacade;
-import com.datn.api.model.Product;
+import com.datn.api.facade.UserFacade;
+
 import com.datn.api.model.User;
-import com.datn.api.repository.ProductRepository;
+
 import com.datn.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class UserController {
 
+    @Autowired
+    private UserFacade userFacade;
     private final UserRepository userRepository;
-
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
+
+        User user = userFacade.userQueryById(requestDto.getUserName());
+        if(user==null )
+            return ResponseEntity.ok("user or password fail");
+        if(user.getUserName().equals(requestDto.getUserName())&&user.getPassWord().equals(requestDto.getPassWord()))
+            return ResponseEntity.ok(user);
+        return ResponseEntity.ok("user or password fail");
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody UserDto.RequestDto requestDto) {
+
+        User user = new User();
+        user.setUserName(requestDto.getUserName());
+        user.setPassWord(requestDto.getPassWord());
+        user.setRole(requestDto.getRole());
+
+        return ResponseEntity.status(201).body(this.userRepository.save(user));
     }
     @GetMapping("/user/findAll")
     public ResponseEntity<List<User>> getAllUsers() {
