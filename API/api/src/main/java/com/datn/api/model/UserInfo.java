@@ -20,6 +20,7 @@ public class UserInfo {
     private String phone;
     private String email;
     private String citizenIdentification;
+    private String location;
 
     public UserInfo() {}
 }

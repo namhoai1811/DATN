@@ -1,11 +1,14 @@
 package com.datn.api.controller;
 
 
+import com.datn.api.dto.RegisterDto;
 import com.datn.api.dto.UserDto;
 import com.datn.api.facade.UserFacade;
 
 import com.datn.api.model.User;
 
+import com.datn.api.model.UserInfo;
+import com.datn.api.repository.UserInfoRepository;
 import com.datn.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +23,18 @@ public class UserController {
     @Autowired
     private UserFacade userFacade;
     private final UserRepository userRepository;
-    public UserController(UserRepository userRepository) {
+    private final UserInfoRepository userInfoRepository;
+    public UserController(UserRepository userRepository, UserInfoRepository userInfoRepository) {
         this.userRepository = userRepository;
+        this.userInfoRepository = userInfoRepository;
     }
+
+
+
+//    private final UserInfoRepository userInfoRepository;
+//    public UserController(UserInfoRepository userInfoRepository) {
+//        this.userInfoRepository = userInfoRepository;
+//    }
 
     @PostMapping("auth/login")
     public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
@@ -36,19 +48,45 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody UserDto.RequestDto requestDto) {
+    public ResponseEntity<RegisterDto.ResponseDto> register(@RequestBody RegisterDto.RequestDto requestDto) {
 
         User user = new User();
         user.setEmail(requestDto.getEmail());
         user.setPassWord(requestDto.getPassWord());
         user.setRole(requestDto.getRole());
+        User newUser = userRepository.save(user);
 
-        return ResponseEntity.status(201).body(this.userRepository.save(user));
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(newUser.getId());
+        userInfo.setEmail(newUser.getEmail());
+        userInfo.setPhone(requestDto.getPhone());
+        userInfo.setLocation(requestDto.getLocation());
+        UserInfo newUserInfo = userInfoRepository.save(userInfo);
+
+        RegisterDto.ResponseDto res = new RegisterDto.ResponseDto();
+        res.setId(newUser.getId());
+        res.setEmail(newUser.getEmail());
+        res.setPassWord(newUser.getPassWord());
+        res.setRole(newUser.getRole());
+
+        res.setFirstName(newUserInfo.getFirstName());
+        res.setLastName(newUserInfo.getLastName());
+        res.setLocation(newUserInfo.getLocation());
+        res.setPhone(newUserInfo.getPhone());
+        res.setCitizenIdentification(newUserInfo.getCitizenIdentification());
+
+        return ResponseEntity.status(201).body(res);
     }
     @GetMapping("/user/findAll")
     public ResponseEntity<List<User>> getAllUsers() {
 
         return ResponseEntity.ok(this.userRepository.findAll());
+    }
+
+    @GetMapping("/user/findAllAdmin")
+    public ResponseEntity<List<User>> getAllUsersAdmin() {
+
+        return ResponseEntity.ok(userRepository.findUserByRole("admin"));
     }
 
     @PostMapping("/user/create")
