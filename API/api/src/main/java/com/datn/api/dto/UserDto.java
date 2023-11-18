@@ -16,7 +16,7 @@ public class UserDto {
         private String id;
 
 
-        private String userName;
+        private String email;
 
 
         private String passWord;
@@ -32,7 +32,7 @@ public class UserDto {
         @JsonProperty("id")
         private String id;
 
-        private String userName;
+        private String email;
 
         private String passWord;
 

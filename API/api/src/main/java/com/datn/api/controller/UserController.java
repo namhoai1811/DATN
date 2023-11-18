@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -23,13 +24,13 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/login")
+    @PostMapping("auth/login")
     public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
 
-        User user = userFacade.userQueryByUserName(requestDto.getUserName());
+        User user = userFacade.userQueryByUserName(requestDto.getEmail());
         if(user==null )
             return ResponseEntity.ok("user or password fail");
-        if(user.getUserName().equals(requestDto.getUserName())&&user.getPassWord().equals(requestDto.getPassWord()))
+        if(user.getEmail().equals(requestDto.getEmail())&&user.getPassWord().equals(requestDto.getPassWord()))
             return ResponseEntity.ok(user);
         return ResponseEntity.ok("user or password fail");
     }
@@ -38,7 +39,7 @@ public class UserController {
     public ResponseEntity<User> register(@RequestBody UserDto.RequestDto requestDto) {
 
         User user = new User();
-        user.setUserName(requestDto.getUserName());
+        user.setEmail(requestDto.getEmail());
         user.setPassWord(requestDto.getPassWord());
         user.setRole(requestDto.getRole());
 
@@ -54,7 +55,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody UserDto.RequestDto requestDto) {
 
         User user = new User();
-        user.setUserName(requestDto.getUserName());
+        user.setEmail(requestDto.getEmail());
         user.setPassWord(requestDto.getPassWord());
         user.setRole(requestDto.getRole());
 
@@ -66,10 +67,10 @@ public class UserController {
 
         Optional<User> user = this.userRepository.findById(requestDto.getId());
         if(user.isPresent()) {
-            System.out.println("userTest" + requestDto.getUserName() +requestDto.getPassWord());
-            user.get().setUserName(requestDto.getUserName());
+            System.out.println("userTest" + requestDto.getEmail() +requestDto.getPassWord());
+            user.get().setEmail(requestDto.getEmail());
             user.get().setPassWord(requestDto.getPassWord());
-            System.out.println("userTest1 - " + user.get().getUserName() +user.get().getPassWord());
+            System.out.println("userTest1 - " + user.get().getEmail() +user.get().getPassWord());
             this.userRepository.save(user.get());
             Optional<User> entity = this.userRepository.findById(requestDto.getId());
 
