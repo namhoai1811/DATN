@@ -56,7 +56,7 @@ export const items = [
   },
   {
     title: 'Crawl Management',
-    path: '/companies',
+    path: '/web-crawler',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -7,9 +7,9 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { UserTable } from 'src/sections/user/user-table';
-import { UserSearch } from 'src/sections/user/user-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import { AdminSearch } from 'src/sections/admin-account/admin-account-search';
+import { AdminTable } from 'src/sections/admin-account/admin-account-table';
 
 const now = new Date();
 
@@ -180,7 +180,7 @@ const Page = () => {
   const customers = useCustomers(page, rowsPerPage);
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
-
+  const [user, setUser] = useState();
   const handlePageChange = useCallback(
     (event, value) => {
       setPage(value);
@@ -194,6 +194,25 @@ const Page = () => {
     },
     []
   );
+
+  const getData = async () => {
+    const response = await fetch("http://localhost:8080/user/findAllAdmin", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    // console.log(useUser(data, page, rowsPerPage));
+    setUser(data);
+    // console.log(user);
+
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <>
@@ -260,10 +279,10 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-            <UserSearch />
-            <UserTable
+            <AdminSearch />
+            <AdminTable
               count={data.length}
-              items={customers}
+              items={user}
               onDeselectAll={customersSelection.handleDeselectAll}
               onDeselectOne={customersSelection.handleDeselectOne}
               onPageChange={handlePageChange}

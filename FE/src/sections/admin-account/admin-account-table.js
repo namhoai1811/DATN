@@ -17,7 +17,7 @@ import {
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 
-export const UserTable = (props) => {
+export const AdminTable = (props) => {
   const {
     count = 0,
     items = [],
@@ -62,14 +62,14 @@ export const UserTable = (props) => {
                   Email
                 </TableCell>
                 <TableCell>
-                  Location
+                  PassWord
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   Phone
                 </TableCell>
                 <TableCell>
                   Signed Up
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -114,14 +114,14 @@ export const UserTable = (props) => {
                     </TableCell>
                     <TableCell>
                       {/* {user.address.city}, {user.address.state}, {user.address.country} */}
-                      {user.location}
+                      {user.passWord}
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       {user.phone}
                     </TableCell>
                     <TableCell>
                     {user.citizenIdentification}
-                    </TableCell>
+                    </TableCell> */}
                   </TableRow>
                 );
               })}
@@ -142,7 +142,7 @@ export const UserTable = (props) => {
   );
 };
 
-UserTable.propTypes = {
+AdminTable.propTypes = {
   count: PropTypes.number,
   items: PropTypes.array,
   onDeselectAll: PropTypes.func,

@@ -38,7 +38,7 @@ const data = {
   bath_rooom: ".post-bathroom::text",
 };
 export const CompanyCard = (props) => {
-  const { company } = props;
+  const { crawl } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -66,13 +66,14 @@ export const CompanyCard = (props) => {
             pb: 3,
           }}
         >
-          <Avatar src={company.logo} variant="square" />
+          {/* <Avatar src={crawl.logo} variant="square" /> */}
+          <Avatar src="/assets/logos/logo.png" variant="square" />
         </Box>
         <Typography align="center" gutterBottom variant="h5">
-          {company.title}
+          {crawl.titlePage}
         </Typography>
         <Typography align="center" variant="body1">
-          {company.description}
+          {crawl.urlPage}
         </Typography>
 
         <Box
@@ -156,12 +157,9 @@ export const CompanyCard = (props) => {
             Edit
           </Button>
           <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>{company.title}</DialogTitle>
+            <DialogTitle>{crawl.title}</DialogTitle>
             <DialogContent>
-              <DialogContentText>
-                {/* To subscribe to this website, please enter your email address here. We will send
-                updates occasionally. */}
-              </DialogContentText>
+              <DialogContentText>{crawl.titlePage}</DialogContentText>
               <TextField
                 autoFocus
                 margin="dense"
@@ -170,7 +168,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.url}
+                value={crawl.urlQuery}
               />
               <TextField
                 autoFocus
@@ -180,7 +178,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.title}
+                value={crawl.titleQuery}
               />
               <TextField
                 autoFocus
@@ -190,7 +188,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.description}
+                value={crawl.descriptionQuery}
               />
               <TextField
                 autoFocus
@@ -200,7 +198,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.price}
+                value={crawl.priceQuery}
               />
               <TextField
                 autoFocus
@@ -210,9 +208,9 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.link_url}
+                value={crawl.imageUrlQuery}
               />
-      
+
               <TextField
                 autoFocus
                 margin="dense"
@@ -221,7 +219,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.address}
+                value={crawl.addressQuery}
               />
               <TextField
                 autoFocus
@@ -231,7 +229,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.acreage}
+                value={crawl.acreageQuery}
               />
               <TextField
                 autoFocus
@@ -241,7 +239,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.direction}
+                value={crawl.directionQuery}
               />
               <TextField
                 autoFocus
@@ -251,7 +249,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.date}
+                value={crawl.dateQuery}
               />
               <TextField
                 autoFocus
@@ -261,7 +259,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.name_contact}
+                value={crawl.nameContactQuery}
               />
               <TextField
                 autoFocus
@@ -271,7 +269,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.phone_contact}
+                value={crawl.phoneContactQuery}
               />
               <TextField
                 autoFocus
@@ -281,7 +279,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.bed_room}
+                value={crawl.bedRoomQuery}
               />
               <TextField
                 autoFocus
@@ -291,7 +289,7 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={data.bath_rooom}
+                value={crawl.bathRoomQuery}
               />
             </DialogContent>
             <DialogActions>
@@ -306,5 +304,5 @@ export const CompanyCard = (props) => {
 };
 
 CompanyCard.propTypes = {
-  company: PropTypes.object.isRequired,
+  crawl: PropTypes.object.isRequired,
 };
