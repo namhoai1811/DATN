@@ -1,12 +1,10 @@
 package com.datn.api.controller;
 
-
 import com.datn.api.dto.RegisterDto;
 import com.datn.api.dto.UserDto;
+import com.datn.api.dto.UserInfoDto;
 import com.datn.api.facade.UserFacade;
-
 import com.datn.api.model.User;
-
 import com.datn.api.model.UserInfo;
 import com.datn.api.repository.UserInfoRepository;
 import com.datn.api.repository.UserRepository;
@@ -22,19 +20,14 @@ public class UserController {
 
     @Autowired
     private UserFacade userFacade;
+
     private final UserRepository userRepository;
+
     private final UserInfoRepository userInfoRepository;
     public UserController(UserRepository userRepository, UserInfoRepository userInfoRepository) {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
     }
-
-
-
-//    private final UserInfoRepository userInfoRepository;
-//    public UserController(UserInfoRepository userInfoRepository) {
-//        this.userInfoRepository = userInfoRepository;
-//    }
 
     @PostMapping("auth/login")
     public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
@@ -80,7 +73,7 @@ public class UserController {
     @GetMapping("/user/findAll")
     public ResponseEntity<List<User>> getAllUsers() {
 
-        return ResponseEntity.ok(this.userRepository.findAll());
+        return ResponseEntity.ok(userRepository.findAll());
     }
 
     @GetMapping("/user/findAllAdmin")
@@ -97,27 +90,53 @@ public class UserController {
         user.setPassWord(requestDto.getPassWord());
         user.setRole(requestDto.getRole());
 
-        return ResponseEntity.status(201).body(this.userRepository.save(user));
+        return ResponseEntity.status(201).body(userRepository.save(user));
     }
 
     @PostMapping("/user/update")
     public ResponseEntity updateUser(@RequestBody UserDto.RequestDto requestDto) {
 
-        Optional<User> user = this.userRepository.findById(requestDto.getId());
+        Optional<User> user = userRepository.findById(requestDto.getId());
         if(user.isPresent()) {
-            System.out.println("userTest" + requestDto.getEmail() +requestDto.getPassWord());
             user.get().setEmail(requestDto.getEmail());
             user.get().setPassWord(requestDto.getPassWord());
-            System.out.println("userTest1 - " + user.get().getEmail() +user.get().getPassWord());
-            this.userRepository.save(user.get());
-            Optional<User> entity = this.userRepository.findById(requestDto.getId());
+            userRepository.save(user.get());
+//            Optional<User> entity = userRepository.findById(requestDto.getId());
 
-            return ResponseEntity.ok(user.get());
+            return ResponseEntity.ok(userRepository.save(user.get()));
         } else {
             return ResponseEntity.ok("The product with id: " + requestDto.getId() + " was not found.");
         }
 
     }
+
+//    @PostMapping("/user/updateUserInfo")
+//    public ResponseEntity updateUserInfo(@RequestBody UserDto.RequestUpdateDto requestDto) {
+//
+//        Optional<User> user = userRepository.findById(requestDto.getId());
+//        if(user.isPresent()) {
+////            System.out.println("userTest" + requestDto.getEmail() +requestDto.getPassWord());
+//            user.get().setEmail(requestDto.getEmail());
+//            user.get().setPassWord(requestDto.getPassWord());
+//            userRepository.save(user.get());
+//            Optional<User> entity = userRepository.findById(requestDto.getId());
+//
+//
+//        } else {
+//            return ResponseEntity.ok("The product with id: " + requestDto.getId() + " was not found.");
+//        }
+//        Optional<UserInfo> userInfo = userInfoRepository.findById(requestDto.getId());
+//        if(userInfo.isPresent()) {
+//            userInfo.get().setFirstName(requestDto.getFirstName());
+//            userInfo.get().setLastName(requestDto.getLastName());
+//            userInfo.get().setPhone(requestDto.getPhone());
+//            userInfo.get().setLocation(requestDto.getLocation());
+//            userInfo.get().setCitizenIdentification(requestDto.getCitizenIdentification());
+//            userInfo.get().setEmail(requestDto.getEmail());
+//        }
+//
+//
+//    }
 
     @GetMapping("/user/find/{userId}")
     public ResponseEntity getUserById(@PathVariable String userId) {

@@ -27,27 +27,33 @@ public class ConfigCrawlerController {
         return ResponseEntity.ok(this.configCrawlerRepository.findAll());
     }
 
+//    @PostMapping("/configCrawler/create")
+//    public ResponseEntity<ConfigCrawler> createConfigCrawler(@RequestBody ConfigCrawlerDto.RequestDto requestDto) {
+//
+//        ConfigCrawler configCrawler = new ConfigCrawler();
+//        configCrawler.setTitlePage(requestDto.getTitlePage());
+//        configCrawler.setTitleQuery(requestDto.getTitleQuery());
+//        configCrawler.setUrlPage(requestDto.getUrlPage());
+//        configCrawler.setDescriptionQuery(requestDto.getDescriptionQuery());
+//        configCrawler.setPriceQuery(requestDto.getPriceQuery());
+//        configCrawler.setImageUrlQuery(requestDto.getImageUrlQuery());
+//        configCrawler.setAcreageQuery(requestDto.getAcreageQuery());
+//        configCrawler.setAddressQuery(requestDto.getAddressQuery());
+//        configCrawler.setDirectionQuery(requestDto.getDirectionQuery());
+//        configCrawler.setDateQuery(requestDto.getDateQuery());
+//        configCrawler.setNameContactQuery(requestDto.getNameContactQuery());
+//        configCrawler.setPhoneContactQuery(requestDto.getPhoneContactQuery());
+//        configCrawler.setBedRoomQuery(requestDto.getBedRoomQuery());
+//        configCrawler.setBathRoomQuery(requestDto.getBathRoomQuery());
+//        configCrawler.setUrlPage(requestDto.getUrlPage());
+//
+//        return ResponseEntity.status(201).body(this.configCrawlerRepository.save(configCrawler));
+//    }
+
     @PostMapping("/configCrawler/create")
-    public ResponseEntity<ConfigCrawler> createConfigCrawler(@RequestBody ConfigCrawlerDto.RequestDto requestDto) {
+    public ResponseEntity<ConfigCrawler> createConfigCrawler(@RequestBody ConfigCrawler configCrawler) {
 
-        ConfigCrawler configCrawler = new ConfigCrawler();
-        configCrawler.setTitlePage(requestDto.getTitlePage());
-        configCrawler.setTitleQuery(requestDto.getTitleQuery());
-        configCrawler.setUrlPage(requestDto.getUrlPage());
-        configCrawler.setDescriptionQuery(requestDto.getDescriptionQuery());
-        configCrawler.setPriceQuery(requestDto.getPriceQuery());
-        configCrawler.setImageUrlQuery(requestDto.getImageUrlQuery());
-        configCrawler.setAcreageQuery(requestDto.getAcreageQuery());
-        configCrawler.setAddressQuery(requestDto.getAddressQuery());
-        configCrawler.setDirectionQuery(requestDto.getDirectionQuery());
-        configCrawler.setDateQuery(requestDto.getDateQuery());
-        configCrawler.setNameContactQuery(requestDto.getNameContactQuery());
-        configCrawler.setPhoneContactQuery(requestDto.getPhoneContactQuery());
-        configCrawler.setBedRoomQuery(requestDto.getBedRoomQuery());
-        configCrawler.setBathRoomQuery(requestDto.getBathRoomQuery());
-        configCrawler.setUrlPage(requestDto.getUrlPage());
-
-        return ResponseEntity.status(201).body(this.configCrawlerRepository.save(configCrawler));
+        return ResponseEntity.ok(this.configCrawlerRepository.save(configCrawler));
     }
 
     @PostMapping("/configCrawler/update")
