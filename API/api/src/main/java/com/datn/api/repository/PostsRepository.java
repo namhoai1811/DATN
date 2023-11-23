@@ -11,4 +11,8 @@ import java.util.List;
 
 public interface PostsRepository extends MongoRepository<Posts, String> {
     List<Posts> findByUserId(String userId);
+
+    List<Posts> findPostsByUserIdIsEmpty();
+    List<Posts> findPostsByUserIdNull();
+    List<Posts> findPostsByUserIdNotNull();
 }

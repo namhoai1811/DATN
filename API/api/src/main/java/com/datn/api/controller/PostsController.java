@@ -75,6 +75,23 @@ public class PostsController {
 
 
     }
+
+    @GetMapping("/posts/findPostsCrawler")
+    public ResponseEntity getPostsCrawlAll() {
+
+        List<Posts> posts = postsRepository.findPostsByUserIdNull();
+        return ResponseEntity.ok(posts);
+
+
+    }
+    @GetMapping("/posts/findPostsUser")
+    public ResponseEntity getPostsUserAll() {
+
+        List<Posts> posts = postsRepository.findPostsByUserIdNotNull();
+        return ResponseEntity.ok(posts);
+
+
+    }
     @GetMapping("/posts/delete/{postId}")
     public ResponseEntity getUserById1(@PathVariable String postId) {
 
