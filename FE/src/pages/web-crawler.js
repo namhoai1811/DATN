@@ -15,7 +15,7 @@ import {
 import { Layout as DashboardLayout } from "src/layouts/dashboard/layout";
 import { CompanyCard } from "src/sections/companies/company-card";
 import { CompaniesSearch } from "src/sections/companies/companies-search";
-import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useCallback, useMemo, useState, useEffect } from "react";
 
 const companies = [
   {
@@ -74,6 +74,7 @@ const Page = () => {
     const data = await response.json();
     // console.log(useUser(data, page, rowsPerPage));
     setCrawl(data);
+    console.log(data)
     // console.log(user);
 
     console.log(data);
@@ -137,7 +138,7 @@ const Page = () => {
               </div>
             </Stack>
             <CompaniesSearch />
-            <Grid container spacing={3}>
+            <Grid container spacing = {3}>
               {crawl.map((company) => (
                 <Grid xs={12} md={6} lg={4} key={company.id}>
                   <CompanyCard crawl={company} />

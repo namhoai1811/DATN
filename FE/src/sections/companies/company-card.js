@@ -41,6 +41,33 @@ export const CompanyCard = (props) => {
   const { crawl } = props;
 
   const [open, setOpen] = useState(false);
+  
+  // const [titleQuery, setTitleQuery] = useState(crawl.titleQuery);
+  const [urlPage, setUrlPage] = useState(crawl.urlPage);
+  const [namePage, setNamePage] = useState(crawl.namePage);
+  const [modeSchedule, setModeSchedule] = useState(crawl.modeSchedule);
+  const [modePublic, setModePublic] = useState(crawl.modePublic);
+  const [modeCookies, setModeCookiesy] = useState(crawl.modeCookies);
+  const [modeRobotsParser, setModeRobotsParser] = useState(crawl.modeRobotsParser);
+  const [timeOutCrawl, setTimeOutCrawl] = useState(crawl.timeOutCrawl);
+
+  const [timeRetryCrawl, setTimeRetryCrawl] = useState(crawl.timeRetryCrawl);
+  const [timeDelayCrawl, setTimeDelayCrawl] = useState(crawl.timeDelayCrawl);
+
+  const [numberPageQuery, setNumberPageQuery] = useState(crawl.numberPageQuery);
+  const [titleQuery, setTitleQuery] = useState(crawl.titleQuery);
+  const [urlQuery, setUrlQuery] = useState(crawl.urlQuery);
+  const [descriptionQuery, setDescriptionQuery] = useState(crawl.descriptionQuery);
+  const [imageUrlQuery, setImageUrlQuery] = useState(crawl.imageUrlQuery);
+  const [priceQuery, setpriceQuery] = useState(crawl.priceQuery);
+  const [addressQuery, setAddressQuery] = useState(crawl.addressQuery);
+  const [acreageQuery, setAcreageQuery] = useState(crawl.acreageQuery);
+
+  const [directionQuery, setDirectionQuery] = useState(crawl.directionQuery);
+  const [nameContactQuery, setNameContactQuery] = useState(crawl.nameContactQuery);
+  const [phoneContactQuery, setPhoneContactQuery] = useState(crawl.phoneContactQuery);
+  const [bedRoomQuery, setBedRoomQuery] = useState(crawl.bedRoomQuery);
+  const [bathRoomQuery, setBathRoomQuery] = useState(crawl.bathRoomQuery);
 
   const handleClickOpen = () => {
     setOpen(true);

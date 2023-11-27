@@ -19,7 +19,6 @@ import {
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
 
-import axios from "axios";
 
 const Page = () => {
   const router = useRouter();
@@ -55,6 +54,12 @@ const Page = () => {
         console.log(data);
 
         // await auth.signIn(values.email, values.password);
+
+        try {
+          window.sessionStorage.setItem("authenticated", "true");
+        } catch (err) {
+          console.error(err);
+        }
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });

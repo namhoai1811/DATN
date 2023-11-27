@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useReducer, useRef } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 const HANDLERS = {
   INITIALIZE: "INITIALIZE",
   SIGN_IN: "SIGN_IN",

@@ -19,6 +19,15 @@ export const items = [
     )
   },
   {
+    title: 'Overview',
+    path: '/home',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ChartBarIcon />
+      </SvgIcon>
+    )
+  },
+  {
     title: 'User Account',
     path: '/user',
     icon: (
