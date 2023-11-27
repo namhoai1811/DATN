@@ -240,7 +240,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Customers</title>
+        <title>User acount</title>
       </Head>
       <Box
         component="main"

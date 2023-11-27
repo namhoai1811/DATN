@@ -241,7 +241,7 @@ const Page = () => {
   return (
     <>
       <Head>
-        <title>Customers</title>
+        <title>Posts User</title>
       </Head>
       <Box
         component="main"
