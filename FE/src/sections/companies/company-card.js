@@ -41,7 +41,7 @@ export const CompanyCard = (props) => {
   const { crawl } = props;
 
   const [open, setOpen] = useState(false);
-  
+
   // const [titleQuery, setTitleQuery] = useState(crawl.titleQuery);
   const [urlPage, setUrlPage] = useState(crawl.urlPage);
   const [namePage, setNamePage] = useState(crawl.namePage);

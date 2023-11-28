@@ -9,6 +9,9 @@ import com.datn.api.model.UserInfo;
 import com.datn.api.repository.UserInfoRepository;
 import com.datn.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -74,6 +77,14 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers() {
 
         return ResponseEntity.ok(userRepository.findAll());
+    }
+
+    @GetMapping("/user/findAll1")
+    public ResponseEntity<Page<User>> getAllUsers1() {
+        Pageable pageable = PageRequest.of(0, 2);
+        Page<User> pages = userRepository.findAll(pageable);
+
+        return ResponseEntity.ok(pages);
     }
 
     @GetMapping("/user/findAllAdmin")

@@ -20,9 +20,7 @@ import {
   GridRowEditStopReasons,
   GridToolbar,
 } from "@mui/x-data-grid";
-import {
-  randomId,
-} from "@mui/x-data-grid-generator";
+import { randomId } from "@mui/x-data-grid-generator";
 const now = new Date();
 
 function EditToolbar(props) {
