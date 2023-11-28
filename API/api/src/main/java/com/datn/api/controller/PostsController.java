@@ -2,8 +2,12 @@ package com.datn.api.controller;
 
 import com.datn.api.facade.PostsFacade;
 import com.datn.api.model.Posts;
+import com.datn.api.model.User;
 import com.datn.api.repository.PostsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +28,16 @@ public class PostsController {
 
         return ResponseEntity.ok(this.postsRepository.findAll());
     }
+
+    @GetMapping("/posts/findAll1")
+    public ResponseEntity<Page<Posts>> getAllUsers1(int limit, int page) {
+
+        Pageable pageable = PageRequest.of(limit, page);
+        Page<Posts> pages = postsRepository.findAll(pageable);
+        return ResponseEntity.ok(pages);
+    }
+
+
 
     @PostMapping("/posts/create")
 //    public ResponseEntity<Posts> createUser(@RequestBody PostsDto.RequestDto requestDto) {

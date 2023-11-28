@@ -80,8 +80,8 @@ public class UserController {
     }
 
     @GetMapping("/user/findAll1")
-    public ResponseEntity<Page<User>> getAllUsers1() {
-        Pageable pageable = PageRequest.of(0, 2);
+    public ResponseEntity<Page<User>> getAllUsers1(int limit, int page ) {
+        Pageable pageable = PageRequest.of(limit, page);
         Page<User> pages = userRepository.findAll(pageable);
 
         return ResponseEntity.ok(pages);
