@@ -1,0 +1,154 @@
+{
+    "province": [
+        "Hà Nội",
+        "Hồ Chí Minh",
+        "Cần Thơ",
+        "Đà Nẵng",
+        "Hải Phòng",
+        "Đồng Nai",
+        "Bình Dương",
+        "Vĩnh Phúc",
+        "Bắc Ninh",
+        "Quảng Ninh",
+        "Huế",
+        "Vũng Tàu"
+    ],
+    "square": [
+        {
+            "label": "Tất cả",
+            "value": 0
+        },
+        {
+            "label": "30 - 50",
+            "value": 30
+        },
+        {
+            "label": "50-80",
+            "value": 50
+        },
+        {
+            "label": "80-100",
+            "value": 80
+        },
+        {
+            "label": "100-150",
+            "value": 100
+        },
+        {
+            "label": "150-200",
+            "value": 150
+        },
+        {
+            "label": ">200",
+            "value": 200
+        }
+    ],
+    "price": [
+        {
+            "label": "Tất cả",
+            "value": 0
+        },
+        {
+            "label": "500 - 1 tỷ",
+            "value": 0.5
+        },
+        {
+            "label": "1 tỷ - 1.5 tỷ",
+            "value": 1
+        },
+        {
+            "label": "1.5 - 2 tỷ",
+            "value": 1.5
+        },
+        {
+            "label": "2 tỷ - 3 tỷ",
+            "value": 2
+        },
+        {
+            "label": "3 tỷ - 5 tỷ",
+            "value": 3
+        },
+        {
+            "label": "5 tỷ - 10 tỷ",
+            "value": 5
+        },
+        {
+            "label": "10 tỷ - 20 tỷ",
+            "value": 10
+        },
+        {
+            "label": "20 tỷ - 50 tỷ",
+            "value": 20
+        },
+        {
+            "label": "50 tỷ - 100 tỷ",
+            "value": 50
+        },
+        {
+            "label": "> 100 tỷ",
+            "value": 100
+        }
+    ],
+    "direct": [
+        {
+            "label": "Tất cả",
+            "value": ""
+        },
+        {
+            "label": "Đông",
+            "value": "Đông"
+        },
+        {
+            "label": "Tây",
+            "value": "Tây"
+        },
+        {
+            "label": "Nam",
+            "value": "Nam"
+        },
+        {
+            "label": "Bắc",
+            "value": "Bắc"
+        },
+        {
+            "label": "Đông Nam",
+            "value": "Đông Nam"
+        },
+        {
+            "label": "Đông Bắc",
+            "value": "Đông Bắc"
+        },
+        {
+            "label": "Tây Nam",
+            "value": "Tây Nam"
+        },
+        {
+            "label": "Tây Bắc",
+            "value": "Tây Bắc"
+        }
+    ],
+    "juridical": [
+        {
+            "value": "Sổ đỏ",
+            "label": "Sổ đỏ"
+        },
+        {
+            "value": "Sổ hồng",
+            "label": "Sổ hồng"
+        },
+        {
+            "value": "Giấy phép xây dựng",
+            "label": "Giấy phép xây dựng"
+        }
+    ],
+    "parking": [
+        {
+            "value": "có",
+            "label": "Yes"
+        },
+        {
+            "value": "không",
+            "label": "No"
+        }
+    ]
+}
