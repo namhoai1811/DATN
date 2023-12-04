@@ -1,7 +1,7 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo} from "react";
 import { Product } from "./Product";
-import { SuggestPost } from "../../../components/SuggestPost";
-import { getAllPost } from "../../../store/slice/postSlice";
+// import { SuggestPost } from "../../../components/SuggestPost";
+// import { getAllPost } from "../../../store/slice/postSlice";
 
 export const Main = memo(({ data }) => {
   console.log(data);
@@ -27,65 +27,65 @@ export const Main = memo(({ data }) => {
   //     },
   // ];
 
-  const data1 = [
-    {
-      title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
-      link_image: "",
-      url_page: "",
-      square: 50,
-      width: 5,
-      length: 10,
-      direct: "Đông",
-      price: 1.1,
-      juridical: "Sổ đỏ",
-      street: "Tạ Quang Bửu",
-      ward: "Bách Khoa",
-      district: "Hai Bà Trưng",
-      province: "Hà Nội",
-      bedroom: 1,
-      bathroom: 1,
-      floor: 1,
-      kitchen: 1,
-    },
-    {
-      title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
-      link_image: "",
-      url_page: "",
-      square: 50,
-      width: 5,
-      length: 10,
-      direct: "Đông",
-      price: 1.1,
-      juridical: "Sổ đỏ",
-      street: "Tạ Quang Bửu",
-      ward: "Bách Khoa",
-      district: "Hai Bà Trưng",
-      province: "Hà Nội",
-      bedroom: 1,
-      bathroom: 1,
-      floor: 1,
-      kitchen: 1,
-    },
-    {
-      title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
-      link_image: "",
-      url_page: "",
-      square: 50,
-      width: 5,
-      length: 10,
-      direct: "Đông",
-      price: 1.1,
-      juridical: "Sổ đỏ",
-      street: "Tạ Quang Bửu",
-      ward: "Bách Khoa",
-      district: "Hai Bà Trưng",
-      province: "Hà Nội",
-      bedroom: 1,
-      bathroom: 1,
-      floor: 1,
-      kitchen: 1,
-    },
-  ];
+  // const data1 = [
+  //   {
+  //     title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
+  //     link_image: "",
+  //     url_page: "",
+  //     square: 50,
+  //     width: 5,
+  //     length: 10,
+  //     direct: "Đông",
+  //     price: 1.1,
+  //     juridical: "Sổ đỏ",
+  //     street: "Tạ Quang Bửu",
+  //     ward: "Bách Khoa",
+  //     district: "Hai Bà Trưng",
+  //     province: "Hà Nội",
+  //     bedroom: 1,
+  //     bathroom: 1,
+  //     floor: 1,
+  //     kitchen: 1,
+  //   },
+  //   {
+  //     title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
+  //     link_image: "",
+  //     url_page: "",
+  //     square: 50,
+  //     width: 5,
+  //     length: 10,
+  //     direct: "Đông",
+  //     price: 1.1,
+  //     juridical: "Sổ đỏ",
+  //     street: "Tạ Quang Bửu",
+  //     ward: "Bách Khoa",
+  //     district: "Hai Bà Trưng",
+  //     province: "Hà Nội",
+  //     bedroom: 1,
+  //     bathroom: 1,
+  //     floor: 1,
+  //     kitchen: 1,
+  //   },
+  //   {
+  //     title: "Bán căn hộ dự án vinhome Ocean Park Gia Lâm",
+  //     link_image: "",
+  //     url_page: "",
+  //     square: 50,
+  //     width: 5,
+  //     length: 10,
+  //     direct: "Đông",
+  //     price: 1.1,
+  //     juridical: "Sổ đỏ",
+  //     street: "Tạ Quang Bửu",
+  //     ward: "Bách Khoa",
+  //     district: "Hai Bà Trưng",
+  //     province: "Hà Nội",
+  //     bedroom: 1,
+  //     bathroom: 1,
+  //     floor: 1,
+  //     kitchen: 1,
+  //   },
+  // ];
 
   return (
     <div className="main">

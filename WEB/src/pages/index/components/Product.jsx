@@ -20,9 +20,9 @@ export const Product = memo(({ item }) => {
   return (
     <div className="item">
       <div className="wrapper-image d-flex align-items-center justify-content-center">
-        {item.linkImage ? (
+        {item.imageUrl ? (
           <img
-            src={item.linkImage.split(",")[0]}
+            src={item.imageUrl}
             alt="not found"
             className="image-product"
           />
@@ -63,7 +63,7 @@ export const Product = memo(({ item }) => {
             <img className="icon" src={IC_PRICE} alt="notfound" />
             <label>Price :</label>
             {/* {filterPrice(item.price)} */}
-            item.price
+            {item.price}
           </div>
           <div className="juridial">
             <img className="icon" src={IC_JURIDICAL} alt="notfound" />
@@ -93,7 +93,7 @@ export const Product = memo(({ item }) => {
               {" kitchen: " +
                 (item.kitchen === ""
                   ? "__"
-                  : item.kitchen == "có"
+                  : item.kitchen === "có"
                   ? "yes"
                   : "no")}
             </div>
@@ -105,7 +105,7 @@ export const Product = memo(({ item }) => {
               {" parking: " +
                 (item.bathroom === ""
                   ? "__"
-                  : item.parking == "có"
+                  : item.parking === "có"
                   ? "yes"
                   : "no")}
             </div>
