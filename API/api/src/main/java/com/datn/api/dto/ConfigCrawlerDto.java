@@ -62,10 +62,10 @@ public class ConfigCrawlerDto {
         //  Querry
         private  int numberPageQuery;
         private  String titleQuery;
-
+        private  String urlQuery;
         private  String descriptionQuery;
-        private  String imageUrlQuery;
         private  String priceQuery;
+        private  String imageUrlQuery;
         private  String addressQuery;
         private  String acreageQuery;
         private  String directionQuery;

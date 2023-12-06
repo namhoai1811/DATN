@@ -63,10 +63,10 @@ public class ConfigCrawlerController {
         if(configCrawler.isPresent()) {
 
             configCrawler.get().setTitleQuery(requestDto.getTitleQuery());
-            configCrawler.get().setUrlPage(requestDto.getUrlPage());
-            configCrawler.get().setTitlePage(requestDto.getTitlePage());
+//            configCrawler.get().setUrlPage(requestDto.getUrlPage());
+//            configCrawler.get().setTitlePage(requestDto.getTitlePage());
             configCrawler.get().setTitleQuery(requestDto.getTitleQuery());
-            configCrawler.get().setUrlPage(requestDto.getUrlPage());
+            configCrawler.get().setUrlQuery(requestDto.getUrlQuery());
             configCrawler.get().setDescriptionQuery(requestDto.getDescriptionQuery());
             configCrawler.get().setPriceQuery(requestDto.getPriceQuery());
             configCrawler.get().setImageUrlQuery(requestDto.getImageUrlQuery());
@@ -78,7 +78,7 @@ public class ConfigCrawlerController {
             configCrawler.get().setPhoneContactQuery(requestDto.getPhoneContactQuery());
             configCrawler.get().setBedRoomQuery(requestDto.getBedRoomQuery());
             configCrawler.get().setBathRoomQuery(requestDto.getBathRoomQuery());
-            configCrawler.get().setUrlPage(requestDto.getUrlPage());
+//            configCrawler.get().setUrlPage(requestDto.getUrlPage());
 
             this.configCrawlerRepository.save(configCrawler.get());
             Optional<ConfigCrawler> entity = this.configCrawlerRepository.findById(requestDto.getId());

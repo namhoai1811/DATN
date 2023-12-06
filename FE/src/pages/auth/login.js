@@ -51,7 +51,7 @@ const Page = () => {
         });
         const data = await response.json();
         window.sessionStorage.setItem("userInfo", data);
-        console.log(data);
+        
 
         // await auth.signIn(values.email, values.password);
 
@@ -60,6 +60,7 @@ const Page = () => {
         } catch (err) {
           console.error(err);
         }
+        auth.skip();
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });

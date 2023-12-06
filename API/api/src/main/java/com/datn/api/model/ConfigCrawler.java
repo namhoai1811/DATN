@@ -28,6 +28,7 @@ public class ConfigCrawler {
 //  Querry
     private  int numberPageQuery;
     private  String titleQuery;
+    private  String urlQuery;
     private  String descriptionQuery;
     private  String imageUrlQuery;
     private  String priceQuery;
@@ -39,7 +40,7 @@ public class ConfigCrawler {
     private  String phoneContactQuery;
     private  String bedRoomQuery;
     private  String bathRoomQuery;
-    private String urlQuery;
+
 
    public ConfigCrawler() {}
 }
