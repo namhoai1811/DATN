@@ -43,7 +43,7 @@ export const CompanyCard = (props) => {
   const [open, setOpen] = useState(false);
 
   // const [titleQuery, setTitleQuery] = useState(crawl.titleQuery);
-  const [urlPage, setUrlPage] = useState(crawl.urlPage);
+  // const [urlPage, setUrlPage] = useState(crawl.urlPage);
   const [namePage, setNamePage] = useState(crawl.namePage);
   const [modeSchedule, setModeSchedule] = useState(crawl.modeSchedule);
   const [modePublic, setModePublic] = useState(crawl.modePublic);
