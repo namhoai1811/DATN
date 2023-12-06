@@ -40,7 +40,7 @@ export const Index = memo(() => {
         limit: 10,
       })
     );
-  }, []);
+  },);
 
   const handleChangeDataFilter = useCallback(
     (keyName, value) => {
@@ -50,8 +50,7 @@ export const Index = memo(() => {
           [keyName]: value,
         };
       });
-    },
-    [dataFilter.keyName]
+    }
   );
 
   const handleSubmit = useCallback(

@@ -1,5 +1,5 @@
-import { memo, useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { memo, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import {
     IC_ADDRESS,
     IC_BEDROOM,
@@ -19,24 +19,25 @@ import { filterPrice } from "../../../service/filter";
 
 export const MainDetailPost = memo(() => {
     const item = useSelector((state) => state.post.item);
+    // console.log(state)
     const images = useSelector((state) =>
-        state.post.item.linkImage ? item.linkImage.split(",") : []
+        state.post.item.imageUrl
     );
 
     const [activeImage, setActiveImage] = useState(0);
 
-    const handleNextImage = useCallback(() => {
-        const length = images.length;
-        if (activeImage < length - 1) {
-            setActiveImage((prev) => prev + 1);
-        }
-    }, [activeImage, images]);
+    // const handleNextImage = useCallback(() => {
+    //     const length = images.length;
+    //     if (activeImage < length - 1) {
+    //         setActiveImage((prev) => prev + 1);
+    //     }
+    // }, [activeImage, images]);
 
-    const handlePreviousImage = useCallback(() => {
-        if (activeImage > 1) {
-            setActiveImage((prev) => prev - 1);
-        }
-    }, [activeImage]);
+    // const handlePreviousImage = useCallback(() => {
+    //     if (activeImage > 1) {
+    //         setActiveImage((prev) => prev - 1);
+    //     }
+    // }, [activeImage]);
 
     return (
         <div className="main-detail-post d-flex flex-column">
@@ -49,7 +50,7 @@ export const MainDetailPost = memo(() => {
                             className="carousel slide"
                             data-ride="carousel"
                         >
-                            <ol className="carousel-indicators">
+                            {/* <ol className="carousel-indicators">
                                 {images.length > 0 &&
                                     Object.keys(images).map((item, index) => {
                                         return (
@@ -58,35 +59,28 @@ export const MainDetailPost = memo(() => {
                                                 data-target="#carouselExampleIndicators"
                                                 data-slide-to={item}
                                                 className={
-                                                    item == activeImage
+                                                    item === activeImage
                                                         ? "active"
                                                         : ""
                                                 }
                                             ></li>
                                         );
                                     })}
-                            </ol>
+                            </ol> */}
                             <div className="carousel-inner">
-                                {images.length > 0 &&
-                                    images.map((item, index) => (
+                              
                                         <div
-                                            key={index}
-                                            className={
-                                                "carousel-item" +
-                                                (activeImage == index
-                                                    ? " active"
-                                                    : "")
-                                            }
+                                        
                                         >
                                             <img
                                                 className="d-block w-100 img-post"
-                                                src={item}
+                                                src={images}
                                                 alt="Second slide"
                                             />
                                         </div>
-                                    ))}
+                                 
                             </div>
-                            <button
+                            {/* <button
                                 className="carousel-control-prev"
                                 data-slide="prev"
                                 onClick={handlePreviousImage}
@@ -107,10 +101,10 @@ export const MainDetailPost = memo(() => {
                                     aria-hidden="true"
                                 ></span>
                                 <span className="sr-only">Next</span>
-                            </button>
+                            </button> */}
                         </div>
                     </div>
-                    <div className="list-image d-flex justify-content-center">
+                    {/* <div className="list-image d-flex justify-content-center">
                         {images.length > 0 &&
                             images.map(
                                 (item, index) =>
@@ -127,8 +121,8 @@ export const MainDetailPost = memo(() => {
                                         </div>
                                     )
                             )}
-                    </div>
-                    <a className="btn btn-primary" href={item.urlPage}>
+                    </div> */}
+                    <a className="btn btn-primary" href={item.url}>
                         News traceability
                     </a>
                 </div>
@@ -212,9 +206,9 @@ export const MainDetailPost = memo(() => {
                                 {" kitchen: " +
                                     (item.kitchen === ""
                                         ? "__"
-                                        : item.kitchen == "có"
-                                        ? "yes"
-                                        : "no")}
+                                        : item.kitchen === "có"
+                                            ? "yes"
+                                            : "no")}
                             </div>
                             <div className="parking col-3 font-weight-bold">
                                 <img
@@ -225,9 +219,9 @@ export const MainDetailPost = memo(() => {
                                 {" parking: " +
                                     (item.bathroom === ""
                                         ? "__"
-                                        : item.parking == "có"
-                                        ? "yes"
-                                        : "no")}
+                                        : item.parking === "có"
+                                            ? "yes"
+                                            : "no")}
                             </div>
                             <div className="floor col-3 font-weight-bold">
                                 <img

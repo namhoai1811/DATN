@@ -26,9 +26,9 @@ export const getAllPost = createAsyncThunk(
 export const getPost = createAsyncThunk(
   "post/getPost",
   async (params, thunkAPI) => {
-    console.log(params);
+    // console.log(params);
     try {
-      const rest = await axiosClient("get", `api/v1/posts/${params}`);
+      const rest = await axiosClient("get", `posts/find/${params}`);
       return rest.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -111,7 +111,8 @@ export const postSlice = createSlice({
         state.loading = false;
         state.message = action.payload.message;
         state.code = action.payload.code;
-        state.item = action.payload.data;
+        state.item = action.payload;
+        console.log(action.payload)
       });
     //   .addCase(getListRecommendation.pending, (state) => {
     //     state.loading = true;
