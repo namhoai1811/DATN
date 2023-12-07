@@ -3,7 +3,7 @@ import { Header } from "../../components/Header";
 import { SuggestPost } from "../../components/SuggestPost";
 import { MainDetailPost } from "./components/MainDetailPost";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getListRecommendation, getPost } from "../../store/slice/postSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 

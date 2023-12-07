@@ -1,5 +1,6 @@
 package com.datn.api.controller;
 
+import com.datn.api.dto.PageDto;
 import com.datn.api.facade.PostsFacade;
 import com.datn.api.model.Posts;
 import com.datn.api.model.User;
@@ -29,10 +30,10 @@ public class PostsController {
         return ResponseEntity.ok(this.postsRepository.findAll());
     }
 
-    @GetMapping("/posts/findAll1")
-    public ResponseEntity<Page<Posts>> getAllUsers1(int limit, int page) {
+    @PostMapping("/posts/findPage")
+    public ResponseEntity<Page<Posts>> getAllUsers1(@RequestBody PageDto requestDto) {
 
-        Pageable pageable = PageRequest.of(limit, page);
+        Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
         Page<Posts> pages = postsRepository.findAll(pageable);
         return ResponseEntity.ok(pages);
     }

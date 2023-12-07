@@ -1,7 +1,10 @@
 import { memo, useCallback, useEffect, useState } from "react";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import { Header } from "../../components/Header";
 import { Filter } from "./components/Filter";
 import { Main } from "./components/Main";
+
 import { getAllPost } from "../../store/slice/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,11 +18,29 @@ export const Index = memo(() => {
     province: "",
   });
 
+
+  const [page, setPage] = useState(1);
+  const handleChange = (event, value) => {
+    setPage(value);
+    handlePage(value)
+
+  };
+
   const data = useSelector((state) => state.post.listItem);
   const totalPages = useSelector((state) => state.post.totalPages);
-  const pageNumber = useSelector((state) => state.post.pageNumber);
+  // const pageNumber = useSelector((state) => state.post.pageNumber);
 
-  const pages = Array(totalPages);
+  // const pages = Array(totalPages);
+
+  const handlePage = useCallback((value) => {
+    console.log(page)
+    dispatch(
+      getAllPost({
+        page: value - 1,
+        limit: 10,
+      })
+    );
+  },);
 
   const handleChangeDataFilter = useCallback(
     (keyName, value) => {
@@ -29,8 +50,7 @@ export const Index = memo(() => {
           [keyName]: value,
         };
       });
-    },
-    [dataFilter.keyName]
+    }
   );
 
   const handleSubmit = useCallback(
@@ -40,41 +60,8 @@ export const Index = memo(() => {
     [dataFilter]
   );
 
-  const handleNextPage = useCallback(() => {
-    if (pageNumber < totalPages) {
-      dispatch(
-        getAllPost({
-          page: pageNumber + 1,
-          limit: 10,
-        })
-      );
-    }
-  }, [pageNumber]);
 
-  const handlePreviousPage = useCallback(() => {
-    if (pageNumber > 1) {
-      dispatch(
-        getAllPost({
-          page: pageNumber - 1,
-          limit: 10,
-        })
-      );
-    }
-  }, [pageNumber]);
 
-  const handleNavigatePage = useCallback(
-    (page) => {
-      return () => {
-        dispatch(
-          getAllPost({
-            page: page,
-            limit: 10,
-          })
-        );
-      };
-    },
-    [pageNumber]
-  );
 
   useEffect(() => {
     dispatch(
@@ -97,8 +84,13 @@ export const Index = memo(() => {
         <Main data={data} />
       </div>
       <div className="foooter my-5">
+
         <nav aria-label="..." className="d-flex justify-content-center">
-          <ul className="pagination">
+          <Stack spacing={2}>
+            {/* <Typography>Page: {page}</Typography> */}
+            <Pagination count={totalPages} page={page} onChange={handleChange} />
+          </Stack>
+          {/* <ul className="pagination">
             <li className="page-item">
               <button
                 className={"page-link" + (pageNumber == 1 ? " disabled" : "")}
@@ -180,7 +172,7 @@ export const Index = memo(() => {
                 Next
               </button>
             </li>
-          </ul>
+          </ul> */}
         </nav>
       </div>
     </div>

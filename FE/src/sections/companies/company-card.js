@@ -43,7 +43,7 @@ export const CompanyCard = (props) => {
   const [open, setOpen] = useState(false);
 
   // const [titleQuery, setTitleQuery] = useState(crawl.titleQuery);
-  const [urlPage, setUrlPage] = useState(crawl.urlPage);
+  // const [urlPage, setUrlPage] = useState(crawl.urlPage);
   const [namePage, setNamePage] = useState(crawl.namePage);
   const [modeSchedule, setModeSchedule] = useState(crawl.modeSchedule);
   const [modePublic, setModePublic] = useState(crawl.modePublic);
@@ -59,11 +59,12 @@ export const CompanyCard = (props) => {
   const [urlQuery, setUrlQuery] = useState(crawl.urlQuery);
   const [descriptionQuery, setDescriptionQuery] = useState(crawl.descriptionQuery);
   const [imageUrlQuery, setImageUrlQuery] = useState(crawl.imageUrlQuery);
-  const [priceQuery, setpriceQuery] = useState(crawl.priceQuery);
+  const [priceQuery, setPriceQuery] = useState(crawl.priceQuery);
   const [addressQuery, setAddressQuery] = useState(crawl.addressQuery);
   const [acreageQuery, setAcreageQuery] = useState(crawl.acreageQuery);
 
   const [directionQuery, setDirectionQuery] = useState(crawl.directionQuery);
+  const [dateQuery, setDateQuery] = useState(crawl.dateQuery);
   const [nameContactQuery, setNameContactQuery] = useState(crawl.nameContactQuery);
   const [phoneContactQuery, setPhoneContactQuery] = useState(crawl.phoneContactQuery);
   const [bedRoomQuery, setBedRoomQuery] = useState(crawl.bedRoomQuery);
@@ -76,6 +77,39 @@ export const CompanyCard = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleClose1 = async () => {
+    console.log(crawl);
+    const response = await fetch("http://localhost:8080/configCrawler/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: crawl.id,
+        urlQuery: urlQuery,
+        titleQuery: titleQuery,
+        descriptionQuery: descriptionQuery,
+        priceQuery: priceQuery,
+        imageUrlQuery: imageUrlQuery,
+        addressQuery: addressQuery,
+        acreageQuery: acreageQuery,
+        directionQuery: directionQuery,
+        dateQuery: dateQuery,
+        nameContactQuery: nameContactQuery,
+        phoneContactQuery: phoneContactQuery,
+        bedRoomQuery: bedRoomQuery,
+        bathRoomQuery: bathRoomQuery,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
+
+  // const handleChangeInput = (event) => {
+  //   changeInput(keyName, event.target.value);
+  // };
 
   return (
     <Card
@@ -195,7 +229,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.urlQuery}
+                value={urlQuery}
+                onChange={(e) => setUrlQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -205,7 +240,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.titleQuery}
+                value={titleQuery}
+                onChange={(e) => setTitleQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -215,7 +251,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.descriptionQuery}
+                value={descriptionQuery}
+                onChange={(e) => setDescriptionQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -225,7 +262,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.priceQuery}
+                value={priceQuery}
+                onChange={(e) => setPriceQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -235,7 +273,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.imageUrlQuery}
+                value={imageUrlQuery}
+                onChange={(e) => setImageUrlQuery(e.target.value)}
               />
 
               <TextField
@@ -246,7 +285,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.addressQuery}
+                value={addressQuery}
+                onChange={(e) => setAddressQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -256,7 +296,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.acreageQuery}
+                value={acreageQuery}
+                onChange={(e) => setAcreageQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -266,7 +307,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.directionQuery}
+                value={directionQuery}
+                onChange={(e) => setDirectionQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -276,7 +318,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.dateQuery}
+                value={dateQuery}
+                onChange={(e) => setDateQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -286,7 +329,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.nameContactQuery}
+                value={nameContactQuery}
+                onChange={(e) => setNameContactQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -296,7 +340,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.phoneContactQuery}
+                value={phoneContactQuery}
+                onChange={(e) => setPhoneContactQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -306,7 +351,8 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.bedRoomQuery}
+                value={bedRoomQuery}
+                onChange={(e) => setBedRoomQuery(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -316,12 +362,13 @@ export const CompanyCard = (props) => {
                 type="text"
                 fullWidth
                 variant="standard"
-                value={crawl.bathRoomQuery}
+                value={bathRoomQuery}
+                onChange={(e) => setBathRoomQuery(e.target.value)}
               />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Cancel</Button>
-              <Button onClick={handleClose}>Update</Button>
+              <Button onClick={handleClose1}>Update</Button>
             </DialogActions>
           </Dialog>
         </Stack>

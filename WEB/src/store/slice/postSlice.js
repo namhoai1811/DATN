@@ -14,16 +14,7 @@ export const getAllPost = createAsyncThunk(
   "post/getAllPost",
   async (params, thunkAPI) => {
     try {
-      console.log(params);
-      const rest = await axiosClient(
-        "get",
-        "posts/findAll1",
-        {},
-        (params = {
-          limit: params.limit,
-          page: params.page,
-        })
-      );
+      const rest = await axiosClient("post", "posts/findPage", params, {});
       console.log(rest.data);
       return rest.data;
     } catch (error) {
@@ -35,9 +26,9 @@ export const getAllPost = createAsyncThunk(
 export const getPost = createAsyncThunk(
   "post/getPost",
   async (params, thunkAPI) => {
-    console.log(params);
+    // console.log(params);
     try {
-      const rest = await axiosClient("get", `api/v1/posts/${params}`);
+      const rest = await axiosClient("get", `posts/find/${params}`);
       return rest.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -98,11 +89,11 @@ export const postSlice = createSlice({
         state.loading = false;
         state.message = action.payload.message;
         state.code = action.payload.code;
-        // console.log(action.payload.pageable);
+        console.log(action.payload);
         state.listItem = action.payload.content;
         state.pageNumber = action.payload.pageable.pageNumber;
         state.pageSize = action.payload.pageable.pageSize;
-        state.totalPages = action.payload.pageable.totalPages;
+        state.totalPages = action.payload.totalPages;
         // state.listItem = action.payload.data.content;
         // state.pageNumber = action.payload.data.pageable.pageNumber;
         // state.pageSize = action.payload.data.pageable.pageSize;
@@ -120,7 +111,8 @@ export const postSlice = createSlice({
         state.loading = false;
         state.message = action.payload.message;
         state.code = action.payload.code;
-        state.item = action.payload.data;
+        state.item = action.payload;
+        console.log(action.payload)
       });
     //   .addCase(getListRecommendation.pending, (state) => {
     //     state.loading = true;

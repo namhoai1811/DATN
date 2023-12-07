@@ -124,7 +124,7 @@ export const AuthProvider = (props) => {
   };
 
   const signIn = async (email, passWord) => {
-    console.log(email + passWord);
+    // console.log(email + passWord);
     const response = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
       headers: {
@@ -159,7 +159,6 @@ export const AuthProvider = (props) => {
       payload: user,
     });
 
-    console.log(window.sessionStorage.getItem("authenticated"));
   };
 
   const signUp = async (email, name, password) => {
