@@ -1,17 +1,25 @@
 {
     "province": [
-        "Hà Nội",
-        "Hồ Chí Minh",
-        "Cần Thơ",
-        "Đà Nẵng",
-        "Hải Phòng",
-        "Đồng Nai",
-        "Bình Dương",
-        "Vĩnh Phúc",
-        "Bắc Ninh",
-        "Quảng Ninh",
-        "Huế",
-        "Vũng Tàu"
+        {
+            "value": "Hà Nội",
+            "label": "Hà Nội"
+        },
+        {
+            "value": "Hồ Chí Minh",
+            "label": "Hồ Chí Minh"
+        },
+        {
+            "value": "Cần Thơ",
+            "label": "Cần Thơ"
+        },
+        {
+            "value": "Hải Phòng",
+            "label": "Hải Phòng"
+        },
+        {
+            "value": "Bình Dương",
+            "label": "Bình Dương"
+        }
     ],
     "square": [
         {
