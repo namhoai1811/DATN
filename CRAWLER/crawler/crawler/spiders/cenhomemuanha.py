@@ -37,7 +37,9 @@ class CenhomeSpider(scrapy.Spider):
         item['title'] = response.css('.page-title::text').extract_first()
         item['type'] = response.css('body > div.b__mainContent > div.container > div > div.left-content > div.head-content > nav > ol > li:nth-child(2) > a::text').extract_first()
         item['description'] = response.css('.description::text').extract_first()
-        # item['link_image'] = response.css('.leftCol > .post-images > img::attr(data-src)').extract_first()
+        item['link_image'] = response.css('.leftCol > .post-images > img::attr(data-src)').extract_first()
+
+        # thumb_carousel > div.owl-stage-outer > div > div:nth-child(1) > div > img
         item['url_page'] = response.request.url
         item['price'] = response.css('.total-price ::text').extract_first()
         bedroom = response.css('.icon-bedroom::text').extract_first()
@@ -53,7 +55,8 @@ class CenhomeSpider(scrapy.Spider):
         # else:
         #     item['bathroom'] = bathroom
         # item['bathroom'] = response.css('.icon-bathroom::text').extract_first()
-        item['acreage'] = response.css('.item-attribute icon-area::text').extract_first()
+        item['acreage'] = response.css('div.block-properties.block-feature > div > div:nth-child(1) > p:nth-child(2) > span::text').extract_first()
+        item['floor'] = response.css('div.block-properties.block-feature > div > div:nth-child(1) > p:nth-child(3) > span::text').extract_first()
         # item['address'] = response.css('.post-address > span::text').extract_first()
         item['direction'] = response.css('.icon-direction::text').extract_first()
         # item['code'] = response.css('.leftCol .table-wrap > table > tbody > tr:nth-child(1) > td:nth-child(2)::text').extract_first()

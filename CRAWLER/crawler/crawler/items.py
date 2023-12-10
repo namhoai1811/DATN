@@ -92,6 +92,7 @@ class CrawlCenhome(Item):
     code = Field()
     name_contact = Field()
     phone_contact = Field()
+    floor = Field()
     project = Field()
     ward = Field()
     street = Field()
