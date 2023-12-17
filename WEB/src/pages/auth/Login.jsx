@@ -61,14 +61,15 @@ export const Login = memo(() => {
     );
 
     const submit = useCallback(() => {
-        const validate = Object.keys(error).every((key) => {
-            return error[key].isError === validateEnum.valid;
-        });
+        // const validate = Object.keys(error).every((key) => {
+        //     return error[key].isError === validateEnum.valid;
+        // });
+        const validate = true;
         if (validate) {
             dispatch(login(account))
-                .then(unwrapResult)
                 .then((res) => {
                     showToastSuccess("login success !");
+                    console.log(res)
                     setTimeout(() => {
                         navigate("/home");
                     }, 3000);
@@ -108,18 +109,18 @@ export const Login = memo(() => {
                     return;
                 }
             }
-            if (keyName == "password") {
-                const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-                const invalid = regex.test(account["password"]);
-                if (!invalid) {
-                    handleSetError(
-                        keyName,
-                        validateEnum.invalid,
-                        loginMessage.invalidPassword
-                    );
-                    return;
-                }
-            }
+            // if (keyName == "password") {
+            //     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+            //     const invalid = regex.test(account["password"]);
+            //     if (!invalid) {
+            //         handleSetError(
+            //             keyName,
+            //             validateEnum.invalid,
+            //             loginMessage.invalidPassword
+            //         );
+            //         return;
+            //     }
+            // }
             handleSetError(keyName, validateEnum.valid, "");
         };
     };
@@ -138,14 +139,13 @@ export const Login = memo(() => {
                     <label htmlFor="ip-pn">Phonenumber</label>
                     <input
                         type="text"
-                        className={`form-control my-2 ${
-                            error.phoneNumber.isError == validateEnum.valid
-                                ? "is-valid"
-                                : error.phoneNumber.isError ==
-                                  validateEnum.invalid
+                        className={`form-control my-2 ${error.phoneNumber.isError == validateEnum.valid
+                            ? "is-valid"
+                            : error.phoneNumber.isError ==
+                                validateEnum.invalid
                                 ? "is-invalid"
                                 : ""
-                        }`}
+                            }`}
                         id="ip-pn"
                         placeholder="phonenumber"
                         onChange={changeInputAccount("phoneNumber")}
@@ -161,13 +161,12 @@ export const Login = memo(() => {
                     <label htmlFor="ip-pw">Password</label>
                     <input
                         type="password"
-                        className={`form-control my-2 ${
-                            error.password.isError == validateEnum.valid
-                                ? "is-valid"
-                                : error.password.isError == validateEnum.invalid
+                        className={`form-control my-2 ${error.password.isError == validateEnum.valid
+                            ? "is-valid"
+                            : error.password.isError == validateEnum.invalid
                                 ? "is-invalid"
                                 : ""
-                        }`}
+                            }`}
                         id="ip-pw"
                         placeholder="Password"
                         onChange={changeInputAccount("password")}

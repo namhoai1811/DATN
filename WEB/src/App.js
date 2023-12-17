@@ -20,11 +20,6 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 <Routes>
-                    <Route path="/auth" element={<AuthLayout />}>
-                        <Route path="login" element={<Login />}></Route>
-                        <Route path="register" element={<Register />}></Route>
-                    </Route>
-
                     <Route path="/" element={<MainLayout />}>
                         <Route path="home" element={<Index />}></Route>
                         <Route path="home/:id" element={<DetailPost />}></Route>
@@ -34,6 +29,10 @@ function App() {
                             path="*"
                             element={<Navigate to={"/home"} />}
                         ></Route>
+                    </Route>
+                    <Route path="/auth" element={<AuthLayout />}>
+                        <Route path="login" element={<Login />}></Route>
+                        <Route path="register" element={<Register />}></Route>
                     </Route>
                 </Routes>
             </div>

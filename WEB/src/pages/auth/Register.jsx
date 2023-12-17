@@ -111,22 +111,22 @@ export const Register = memo(() => {
                     return;
                 }
             }
-            if (keyName === "password") {
-                const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-                const invalid = regex.test(account["password"]);
+            // if (keyName === "password") {
+            //     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+            //     const invalid = regex.test(account["password"]);
 
-                if (!invalid && account["password"] !== "") {
-                    handleSetError(
-                        keyName,
-                        validateEnum.invalid,
-                        registerMessage.invalidPassword
-                    );
-                    return;
-                }
-                if (account["password"] === account["rePassword"]) {
-                    handleSetError("rePassword", validateEnum.valid, "");
-                }
-            }
+            //     if (!invalid && account["password"] !== "") {
+            //         handleSetError(
+            //             keyName,
+            //             validateEnum.invalid,
+            //             registerMessage.invalidPassword
+            //         );
+            //         return;
+            //     }
+            //     if (account["password"] === account["rePassword"]) {
+            //         handleSetError("rePassword", validateEnum.valid, "");
+            //     }
+            // }
             if (keyName === "rePassword") {
                 if (account["password"] !== account["rePassword"]) {
                     handleSetError(
