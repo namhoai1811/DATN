@@ -43,10 +43,9 @@ public class PostsController {
     @PostMapping("/posts/create")
 //    public ResponseEntity<Posts> createUser(@RequestBody PostsDto.RequestDto requestDto) {
     public ResponseEntity<Posts> createUser(@RequestBody Posts posts) {
-//        User user = new User();
-//        user.setUserName(requestDto.getUserName());
-//        user.setPassWord(requestDto.getPassWord());
-//        user.setRole(requestDto.getRole());
+
+        String a = posts.getAcreage();
+
 
         return ResponseEntity.status(201).body(this.postsRepository.save(posts));
     }

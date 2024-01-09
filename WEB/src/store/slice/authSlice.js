@@ -18,11 +18,12 @@ export const login = createAsyncThunk(
     "auth/login",
     async (params, thunkAPI) => {
         const data = {
-            username: params.phoneNumber,
-            password: params.password,
+            email: params.phoneNumber,
+            passWord: params.password,
         };
         try {
-            const res = await axiosClient("post", "/api/v1/auth/login", data);
+            const res = await axiosClient("post", "/auth/login", data);
+            console.log(res)
             return res.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -86,7 +87,8 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.message = action.payload.message;
                 state.code = action.payload.code;
-                storage.setItem("token", action.payload.data.token);
+                console.log(action)
+                storage.setItem("token", action.payload.email);
             })
             .addCase(register.pending, (state) => {
                 state.loading = true;

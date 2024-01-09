@@ -1,22 +1,21 @@
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getInfoUser } from "../store/slice/authSlice";
-import { storage } from "../service/storage";
 
 export const MainLayout = () => {
-    // namnh
-    // const isAuthentication = !!storage.getItem("token");
-    const isAuthentication = true   ;
-    const dispatch = useDispatch();
-    useEffect(() => {
-        if (isAuthentication) {
-            dispatch(getInfoUser());
-        }
-    }, []);
-
+  // namnh
+  // const isAuthentication = !!storage.getItem("token");
+  const isAuthentication = true;
+  const dispatch = useDispatch();
+  useEffect(() => {
     if (isAuthentication) {
-        return <Outlet />;
+      dispatch(getInfoUser());
     }
-    return <Navigate to="/auth/login"></Navigate>;
+  }, []);
+
+  if (isAuthentication) {
+    return <Outlet />;
+  }
+  return <Navigate to="/auth/login"></Navigate>;
 };

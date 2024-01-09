@@ -13,29 +13,29 @@ import {
 import data from "../../../utils/data/data.json";
 
 export const MainPost = memo(() => {
-  const listItems = [
-    {
-      value: "",
-    },
-  ];
   const [postInfo, setPostInfo] = useState({
+    type: 1,
+    userId: 1,
     title: "",
-    square: 0,
+    description: "",
+    price: 0,
+    images: [],
+    province: "",
+    acreage: 0,
+    direction: "",
+    bedRoom: 0,
     width: 0,
     length: 0,
-    direct: "",
-    price: 0,
     juridical: "",
-    province: "",
     ward: "",
-    district: "",
-    province: "",
-    bedroom: 0,
     kitchen: 0,
     bathroom: 0,
     floor: 0,
-    description: "",
-    images: [],
+    nameContact: "nameContact",
+    phoneContact: "phoneContact"
+
+
+
   });
   const [images, setImages] = useState(null);
   const [addressDisable, setAddressDisable] = useState({
@@ -56,12 +56,38 @@ export const MainPost = memo(() => {
     [postInfo]
   );
 
-  const posts = useCallback(() => {
+
+  const handleClose1 = async () => {
     console.log(postInfo);
-  });
+    const response = await fetch("http://localhost:8080/posts/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        type: postInfo.type,
+        userId: postInfo.userId,
+        title: postInfo.title,
+        description: postInfo.description,
+        price: postInfo.price,
+        imageUrl: postInfo.images[0],
+        address: postInfo.province,
+        acreage: postInfo.acreage,
+        direction: postInfo.direction,
+        date: new Date(),
+        nameContact: postInfo.nameContact,
+        phoneContact: postInfo.phoneContact,
+        bedRoom: postInfo.bedRoom,
+        bathRoom: postInfo.bathroom,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+  };
 
   const uploadFile = async () => {
-    if (images.length == 0) return;
+    if (images.length === 0) return;
     let urls = [];
     const temp = Object.values(images);
     for await (const item of temp) {
@@ -186,12 +212,12 @@ export const MainPost = memo(() => {
           <div className="form-group col-3">
             <Input
               type="number"
-              placeholder="Enter number square"
-              id="id-square"
+              placeholder="Enter number acreage"
+              id="id-acreage"
               label="Square (m2)"
-              val={postInfo.square}
+              val={postInfo.acreage}
               changeInput={changePostInfo}
-              keyName="square"
+              keyName="acreage"
               min="0"
               required={true}
             />
@@ -231,9 +257,9 @@ export const MainPost = memo(() => {
               placeholder="Enter number bedroom"
               id="id-bedroom"
               label="Bedroom (room)"
-              val={postInfo.bedroom}
+              val={postInfo.bedRoom}
               changeInput={changePostInfo}
-              keyName="bedroom"
+              keyName="bedRoom"
               min="0"
             />
           </div>
@@ -292,7 +318,17 @@ export const MainPost = memo(() => {
               defaultName="All"
               listItems={data.direct}
               changeSelect={changePostInfo}
-              keyName="direct"
+              keyName="direction"
+            />
+          </div>
+          <div className="form-group col-3">
+            <label>Type</label>
+            <Select
+              defaultValue=""
+              defaultName="All"
+              listItems={data.type}
+              changeSelect={changePostInfo}
+              keyName="type"
             />
           </div>
         </div>
@@ -313,7 +349,7 @@ export const MainPost = memo(() => {
         </div>
         <hr />
         <br />
-        <button className="btn btn-primary" onClick={posts}>
+        <button className="btn btn-primary" onClick={handleClose1}>
           Post
         </button>
       </div>
