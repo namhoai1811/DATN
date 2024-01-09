@@ -33,12 +33,12 @@ export const Header = memo(() => {
                         >
                             Post
                         </button>
-                        <button
+                        {/* <button
                             className="btn btn-outline-secondary mx-2"
                             onClick={redirect("/chatbot")}
                         >
                             Chatbot
-                        </button>
+                        </button> */}
                         <button
                             className="btn btn-outline-secondary mx-2"
                             onClick={redirect("/message")}

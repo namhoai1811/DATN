@@ -19,7 +19,7 @@ class BatdongsanSpider(scrapy.Spider):
             link_detail = product.css('a::attr(href)').extract_first()
             yield response.follow(link_detail, self.parse_detail)
 
-        if self.i < 10:
+        if self.i < 500:
             self.i += 1
             path_next = self.base_url +str(self.i)
             yield response.follow(path_next, callback=self.parse)

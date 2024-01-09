@@ -9,7 +9,7 @@ class BatdongsanSpider(scrapy.Spider):
     def start_requests(self):
         start_urls=[self.base_url]
         i = 1
-        for j in range(10):
+        for j in range(200):
             url = self.base_url + str(i)
             i=i+1
             start_urls.append(url)
