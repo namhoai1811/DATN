@@ -21,7 +21,7 @@ export const MainDetailPost = memo(() => {
     const item = useSelector((state) => state.post.item);
     // console.log(state)
     const images = useSelector((state) =>
-        state.post.item.imageUrl
+        state.post.item.link_image
     );
 
     const [activeImage, setActiveImage] = useState(0);
@@ -73,8 +73,8 @@ export const MainDetailPost = memo(() => {
                                         
                                         >
                                             <img
-                                                className="d-block w-100 img-post"
-                                                src={images}
+                                                className="d-block  img-post"
+                                                src={item.link_image}
                                                 alt="Second slide"
                                             />
                                         </div>
@@ -122,7 +122,7 @@ export const MainDetailPost = memo(() => {
                                     )
                             )}
                     </div> */}
-                    <a className="btn btn-primary" href={item.url}>
+                    <a className="btn btn-primary" href={item.url_page}>
                         News traceability
                     </a>
                 </div>
@@ -239,13 +239,13 @@ export const MainDetailPost = memo(() => {
                                     alt="not-found"
                                     className="icon"
                                 />
-                                {item.nameContact === ""
+                                {item.name_contact === ""
                                     ? " __"
-                                    : " " + item.nameContact}{" "}
+                                    : " " + item.name_contact}{" "}
                                 :
-                                {item.phoneontact === ""
+                                {item.phone_contact === ""
                                     ? " __"
-                                    : " " + item.phoneContact}
+                                    : " " + item.phone_contact}
                             </div>
                             <div className="date col-4 font-weight-bold">
                                 <img

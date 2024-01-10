@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-@Document("posts")
+@Document("postss")
 @AllArgsConstructor
 @Getter
 @Setter
@@ -28,16 +28,25 @@ public class Posts {
     private  String title;
     private  String description;
     private  String price;
-    private  String imageUrl;
-    private String url;
-    private  String address;
-    private  String acreage;
-    private  String direction;
+    private  String square;
+    private  String name_contact;
+    private  String phone_contact;
     private  String date;
-    private  String nameContact;
-    private  String phoneContact;
-    private  String bedRoom;
-    private  String bathRoom;
+    private  String direct;
+    private  String district;
+    private  String province;
+    private  String street;
+    private  String ward;
+    private  String floor;
+    private  String juridical;
+    private  String bedroom;
+    private  String length;
+    private  String width;
+    private  String link_image;
+    private String url_page;
+    private String kitchen;
+    private String parking;
+    private String terrace;
     public Posts(){
 
     }

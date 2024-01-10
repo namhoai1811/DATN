@@ -20,9 +20,9 @@ export const Product = memo(({ item }) => {
   return (
     <div className="item">
       <div className="wrapper-image d-flex align-items-center justify-content-center">
-        {item.imageUrl ? (
+        {item.link_image ? (
           <img
-            src={item.imageUrl}
+            src={item.link_image}
             alt="not found"
             className="image-product"
           />
@@ -55,7 +55,7 @@ export const Product = memo(({ item }) => {
           <div className="direct">
             <img className="icon" src={IC_DIRECTION} alt="notfound" />
             <label> Direction : </label>
-            {item.direction === "None" ? "__" : " " + item.direction}
+            {item.direct === "None" ? "__" : " " + item.direct}
           </div>
         </div>
         <div className="wrapper-price-location">
@@ -122,8 +122,8 @@ export const Product = memo(({ item }) => {
         <div className="wrapper-upload">
           <div className="contact">
             <img className="icon" src={IC_CONTACT} alt="notfound" />
-            {item.nameContact === "" ? " __" : " " + item.nameContact} :
-            {item.phoneontact === "" ? " __" : " " + item.phoneContact}
+            {item.name_contact === "" ? " __" : " " + item.name_contact} :
+            {item.phone_contact === "" ? " __" : " " + item.phone_contact}
           </div>
           <div className="date">
             <img className="icon" src={IC_DATE} alt="notfound" />

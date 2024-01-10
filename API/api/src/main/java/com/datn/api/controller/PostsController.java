@@ -44,7 +44,7 @@ public class PostsController {
 //    public ResponseEntity<Posts> createUser(@RequestBody PostsDto.RequestDto requestDto) {
     public ResponseEntity<Posts> createUser(@RequestBody Posts posts) {
 
-        String a = posts.getAcreage();
+//        String a = posts.getAcreage();
 
 
         return ResponseEntity.status(201).body(this.postsRepository.save(posts));
