@@ -61,7 +61,7 @@ export const Filter = memo(
                                     keyName="province"
                                 />
                             </div>
-                            <div className="col-4">
+                            {/* <div className="col-4">
                                 <Select
                                     defaultName="District"
                                     defaultValue=""
@@ -78,7 +78,7 @@ export const Filter = memo(
                                     changeSelect={handleChangeDataFilter}
                                     keyName="province"
                                 />
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <button

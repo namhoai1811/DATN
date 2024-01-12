@@ -10,6 +10,7 @@ export const Header = memo(() => {
     const navigate = useNavigate();
     const lastName = useSelector((state) => state.auth.user.lastName);
     const isAuthenticate = !!storage.getItem("token");
+    console.log("isAuthenticate" + isAuthenticate)
     const handleLogout = useCallback(() => {
         logout();
         window.location.reload();
@@ -29,22 +30,39 @@ export const Header = memo(() => {
                     <div className="options-left d-flex">
                         <button
                             className="btn btn-outline-secondary mx-2"
+                            onClick={redirect("/index")}
+                        >
+                            Home
+                        </button>
+                        
+                        {/* <button
+                            className="btn btn-outline-secondary mx-2"
+                            onClick={redirect("/post")}
+                        >
+                            Post
+                        </button> */}
+                        {isAuthenticate ? (
+                            <button
+                            className="btn btn-outline-secondary mx-2"
                             onClick={redirect("/post")}
                         >
                             Post
                         </button>
+                        ):(
+                            <div></div>
+                        )}
                         {/* <button
                             className="btn btn-outline-secondary mx-2"
                             onClick={redirect("/chatbot")}
                         >
                             Chatbot
                         </button> */}
-                        <button
+                        {/* <button
                             className="btn btn-outline-secondary mx-2"
                             onClick={redirect("/message")}
                         >
                             Message
-                        </button>
+                        </button> */}
                     </div>
                     {isAuthenticate ? (
                         <div className="options-right d-flex ">
