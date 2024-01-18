@@ -15,7 +15,7 @@ export const getAllPost = createAsyncThunk(
   async (params, thunkAPI) => {
     try {
       const rest = await axiosClient("post", "posts/findPage", params, {});
-      console.log(rest.data);
+      // console.log(rest.data);
       return rest.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

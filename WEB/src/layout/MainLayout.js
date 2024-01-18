@@ -2,12 +2,13 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getInfoUser } from "../store/slice/authSlice";
-
+import { storage } from "../service/storage";
 export const MainLayout = () => {
   // namnh
   // const isAuthentication = !!storage.getItem("token");
   const isAuthentication = true;
   const dispatch = useDispatch();
+  console.log(storage.getItem("email"))
   useEffect(() => {
     if (isAuthentication) {
       dispatch(getInfoUser());

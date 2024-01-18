@@ -29,7 +29,8 @@ export const Login = memo(() => {
         },
     });
     const loading = useSelector((state) => state.auth.loading);
-    const code = useSelector((state) => state.auth.code);
+    // const code = useSelector((state) => state.auth.code);
+    const [code, setCode] = useState(0);
 
     const handleSetError = useCallback(
         (keyName, valIsError, valMessage) => {
@@ -68,11 +69,18 @@ export const Login = memo(() => {
         if (validate) {
             dispatch(login(account))
                 .then((res) => {
-                    showToastSuccess("login success !");
-                    console.log(res)
-                    setTimeout(() => {
-                        navigate("/home");
-                    }, 3000);
+                    if (res.payload === '') {
+                        // showToastSuccess("login fail !");
+                        setCode(404)
+                    } else {
+                        showToastSuccess("login success !");
+                        console.log(res)
+                        // setTimeout(() => {
+                        //     navigate("/home");
+                        // }, 3000);
+                    }
+
+
                 });
         } else {
             Object.keys(error).forEach((key) => {
@@ -129,7 +137,7 @@ export const Login = memo(() => {
         <div className="auth">
             <div className="form-auth">
                 <img src={IMG_APP} className="img-logo" />
-                {code !== 200 && (
+                {code === 404 && (
                     <div className="error-auth text-center">
                         phonenumber or password incorrect
                     </div>

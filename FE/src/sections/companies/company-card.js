@@ -149,7 +149,7 @@ export const CompanyCard = (props) => {
             Total:
           </Typography>
           <Typography align="right" variant="body1">
-            1000
+            1000  
           </Typography>
         </Box>
         <Box

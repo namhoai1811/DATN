@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -37,10 +38,11 @@ public class UserController {
 
         User user = userFacade.userQueryByUserName(requestDto.getEmail());
         if(user==null )
-            return ResponseEntity.ok("user or password fail");
+//            return ResponseEntity.ok("user or password fail");
+            return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
         if(user.getEmail().equals(requestDto.getEmail())&&user.getPassWord().equals(requestDto.getPassWord()))
             return ResponseEntity.ok(user);
-        return ResponseEntity.ok("user or password fail");
+        return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
     }
 
     @PostMapping("/register")

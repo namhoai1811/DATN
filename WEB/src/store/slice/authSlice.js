@@ -23,7 +23,7 @@ export const login = createAsyncThunk(
         };
         try {
             const res = await axiosClient("post", "/auth/login", data);
-            console.log(res)
+            // console.log(res)
             return res.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -66,6 +66,7 @@ export const getInfoUser = createAsyncThunk(
 );
 export const logout = () => {
     storage.removeItem("token");
+    storage.removeItem("email");
 };
 
 export const authSlice = createSlice({
@@ -87,8 +88,13 @@ export const authSlice = createSlice({
                 state.loading = false;
                 state.message = action.payload.message;
                 state.code = action.payload.code;
-                console.log(action)
+                // console.log(action)
                 storage.setItem("token", action.payload.email);
+                storage.setItem("email", action.payload.email);
+                // state.user.firstName = action.payload.data.firstName;
+                // state.user.lastName = action.payload.data.lastName;
+                // state.user.username = action.payload.data.username;
+                // state.user.role = action.payload.data.role;
             })
             .addCase(register.pending, (state) => {
                 state.loading = true;
