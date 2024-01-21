@@ -1,6 +1,7 @@
 package com.datn.api.controller;
 
 import com.datn.api.dto.PageDto;
+import com.datn.api.dto.SearchDto;
 import com.datn.api.facade.PostsFacade;
 import com.datn.api.model.Posts;
 import com.datn.api.model.User;
@@ -34,7 +35,14 @@ public class PostsController {
     public ResponseEntity<Page<Posts>> getAllUsers1(@RequestBody PageDto requestDto) {
 
         Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
-        Page<Posts> pages = postsRepository.findAll(pageable);
+        Page<Posts> pages = postsRepository.findAllByOrderByDateDesc(pageable);
+                return ResponseEntity.ok(pages);
+    }
+
+    @PostMapping("/posts/findByTitle")
+    public ResponseEntity<List<Posts>> findByTitle(@RequestBody SearchDto requestDto) {
+
+        List<Posts> pages = postsRepository.findPostsByTitleLike(requestDto.getTitle());
         return ResponseEntity.ok(pages);
     }
 
@@ -43,10 +51,6 @@ public class PostsController {
     @PostMapping("/posts/create")
 //    public ResponseEntity<Posts> createUser(@RequestBody PostsDto.RequestDto requestDto) {
     public ResponseEntity<Posts> createUser(@RequestBody Posts posts) {
-
-//        String a = posts.getAcreage();
-
-
         return ResponseEntity.status(201).body(this.postsRepository.save(posts));
     }
 
@@ -65,8 +69,6 @@ public class PostsController {
                 return ResponseEntity.ok(entity.get());
             }
         return ResponseEntity.ok("The posts  was not update.");
-
-
     }
 
     @GetMapping("/posts/find/{postId}")
