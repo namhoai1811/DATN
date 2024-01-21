@@ -93,7 +93,8 @@ public class PostsController {
     @GetMapping("/posts/findPostsCrawler")
     public ResponseEntity getPostsCrawlAll() {
 
-        List<Posts> posts = postsRepository.findPostsByUserIdNull();
+//        List<Posts> posts = postsRepository.findPostsByUserIdNull();
+        List<Posts> posts = postsRepository.findAll();
         return ResponseEntity.ok(posts);
 
 
@@ -102,6 +103,7 @@ public class PostsController {
     public ResponseEntity getPostsUserAll() {
 
         List<Posts> posts = postsRepository.findPostsByUserIdNotNull();
+
         return ResponseEntity.ok(posts);
 
 

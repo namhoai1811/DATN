@@ -22,8 +22,8 @@ export const MainPost = memo(() => {
     images: [],
     province: "",
     acreage: 0,
-    direction: "",
-    bedRoom: 0,
+    direct: "",
+    bedroom: 0,
     width: 0,
     length: 0,
     juridical: "",
@@ -32,10 +32,7 @@ export const MainPost = memo(() => {
     bathroom: 0,
     floor: 0,
     nameContact: "nameContact",
-    phoneContact: "phoneContact"
-
-
-
+    phoneContact: "phoneContact",
   });
   const [images, setImages] = useState(null);
   const [addressDisable, setAddressDisable] = useState({
@@ -56,7 +53,6 @@ export const MainPost = memo(() => {
     [postInfo]
   );
 
-
   const handleClose1 = async () => {
     console.log(postInfo);
     const response = await fetch("http://localhost:8080/posts/create", {
@@ -70,15 +66,24 @@ export const MainPost = memo(() => {
         title: postInfo.title,
         description: postInfo.description,
         price: postInfo.price,
-        imageUrl: postInfo.images[0],
-        address: postInfo.province,
-        acreage: postInfo.acreage,
-        direction: postInfo.direction,
+        square: postInfo.square,
+        name_contact: postInfo.name_contact,
+        phone_contact: postInfo.phone_contact,
         date: new Date(),
-        nameContact: postInfo.nameContact,
-        phoneContact: postInfo.phoneContact,
-        bedRoom: postInfo.bedRoom,
-        bathRoom: postInfo.bathroom,
+        direct: postInfo.direct,
+        district: postInfo.district,
+        province: postInfo.province,
+        street: postInfo.street,
+        ward: postInfo.ward,
+        floor: postInfo.floor,
+        juridical: postInfo.juridical,
+        bedroom: postInfo.bedroom,
+        length: postInfo.length,
+        width: postInfo.width,
+        link_image: postInfo.images[0],
+        kitchen: postInfo.kitchen,
+        parking: postInfo.parking,
+        terrace: postInfo.terrace,
       }),
     });
 
@@ -88,6 +93,7 @@ export const MainPost = memo(() => {
 
   const uploadFile = async () => {
     if (images.length === 0) return;
+    console.log(images);
     let urls = [];
     const temp = Object.values(images);
     for await (const item of temp) {
@@ -97,7 +103,9 @@ export const MainPost = memo(() => {
       });
       urls.push(url);
     }
-    changePostInfo("images", [...postInfo.images, ...urls]);
+    changePostInfo("images", urls);
+    // console.log(postInfo.length);
+    // console.log(postInfo.images);
     setImages([]);
   };
 
@@ -212,12 +220,12 @@ export const MainPost = memo(() => {
           <div className="form-group col-3">
             <Input
               type="number"
-              placeholder="Enter number acreage"
+              placeholder="Enter number Square"
               id="id-acreage"
               label="Square (m2)"
-              val={postInfo.acreage}
+              val={postInfo.square}
               changeInput={changePostInfo}
-              keyName="acreage"
+              keyName="square"
               min="0"
               required={true}
             />
@@ -257,9 +265,9 @@ export const MainPost = memo(() => {
               placeholder="Enter number bedroom"
               id="id-bedroom"
               label="Bedroom (room)"
-              val={postInfo.bedRoom}
+              val={postInfo.bedroom}
               changeInput={changePostInfo}
-              keyName="bedRoom"
+              keyName="bedroom"
               min="0"
             />
           </div>
@@ -318,7 +326,7 @@ export const MainPost = memo(() => {
               defaultName="All"
               listItems={data.direct}
               changeSelect={changePostInfo}
-              keyName="direction"
+              keyName="direct"
             />
           </div>
           <div className="form-group col-3">
@@ -363,7 +371,7 @@ export const MainPost = memo(() => {
             className="form-control"
             multiple
           />
-          {postInfo.length > 0 &&
+          {postInfo.images  &&
             postInfo.images.map((item, key) => (
               <img
                 src={item}
@@ -372,6 +380,7 @@ export const MainPost = memo(() => {
                 className="image-post m-2"
               />
             ))}
+            
         </div>
         <button className="btn btn-primary mt-4" onClick={uploadFile}>
           Upload
