@@ -254,7 +254,7 @@ const Page = () => {
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
                 <Typography variant="h4">User</Typography>
-                <Stack alignItems="center" direction="row" spacing={1}>
+                {/* <Stack alignItems="center" direction="row" spacing={1}>
                   <Button
                     color="inherit"
                     startIcon={
@@ -275,9 +275,9 @@ const Page = () => {
                   >
                     Export
                   </Button>
-                </Stack>
+                </Stack> */}
               </Stack>
-              <div>
+              {/* <div>
                 <Button
                   startIcon={
                     <SvgIcon fontSize="small">
@@ -288,7 +288,7 @@ const Page = () => {
                 >
                   Add
                 </Button>
-              </div>
+              </div> */}
             </Stack>
 
             <Box

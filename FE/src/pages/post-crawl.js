@@ -106,16 +106,25 @@ const Page = () => {
           title: newRow.title,
           description: newRow.description,
           price: newRow.price,
-          imageUrl: newRow.imageUrl,
-          url: newRow.url,
-          address: newRow.address,
-          acreage: newRow.acreage,
-          direction: newRow.direction,
+          square: newRow.square,
+          name_contact: newRow.name_contact,
+          phone_contact: newRow.phone_contact,
           date: newRow.date,
-          nameContact: newRow.nameContact,
-          phoneContact: newRow.phoneContact,
-          bedRoom: newRow.bedRoom,
-          bathRoom: newRow.bathRoom,
+          direct: newRow.direct,
+          district: newRow.district,
+          province: newRow.province,
+          street: newRow.street,
+          ward: newRow.ward,
+          floor: newRow.floor,
+          juridical: newRow.juridical,
+          bedroom: newRow.bedroom,
+          length: newRow.length,
+          width: newRow.width,
+          link_image: newRow.link_image,
+          url_page: newRow.url_page,
+          kitchen: newRow.kitchen,
+          parking: newRow.parking,
+          terrace: newRow.terrace,
         }),
       });
 
@@ -134,16 +143,25 @@ const Page = () => {
           title: newRow.title,
           description: newRow.description,
           price: newRow.price,
-          imageUrl: newRow.imageUrl,
-          url: newRow.url,
-          address: newRow.address,
-          acreage: newRow.acreage,
-          direction: newRow.direction,
+          square: newRow.square,
+          name_contact: newRow.name_contact,
+          phone_contact: newRow.phone_contact,
           date: newRow.date,
-          nameContact: newRow.nameContact,
-          phoneContact: newRow.phoneContact,
-          bedRoom: newRow.bedRoom,
-          bathRoom: newRow.bathRoom,
+          direct: newRow.direct,
+          district: newRow.district,
+          province: newRow.province,
+          street: newRow.street,
+          ward: newRow.ward,
+          floor: newRow.floor,
+          juridical: newRow.juridical,
+          bedroom: newRow.bedroom,
+          length: newRow.length,
+          width: newRow.width,
+          link_image: newRow.link_image,
+          url_page: newRow.url_page,
+          kitchen: newRow.kitchen,
+          parking: newRow.parking,
+          terrace: newRow.terrace,
         }),
       });
 
@@ -160,20 +178,29 @@ const Page = () => {
   };
 
   const columns = [
-    // { field: "userId", headerName: "User Id", width: 120, editable: true },
     { field: "type", headerName: "Type", width: 120, editable: true },
     { field: "title", headerName: "Title", width: 200, editable: true },
     { field: "description", headerName: "Description", width: 200, editable: true },
+    { field: "link_image", headerName: "Image", width: 200, editable: true },
+    { field: "url_page", headerName: "Url page", width: 200, editable: true },
     { field: "price", headerName: "Price", width: 200, editable: true },
-    { field: "imageUrl", headerName: "image", width: 200, editable: true },
-    { field: "address", headerName: "Address", width: 200, editable: true },
-    { field: "acreage", headerName: "Acreage", width: 200, editable: true },
-    { field: "direction", headerName: "Direction", width: 200, editable: true },
+    { field: "square", headerName: "Square", width: 200, editable: true },
+    { field: "name_contact", headerName: "Name Contact", width: 200, editable: true },
+    { field: "phone_contact", headerName: "Phone contact", width: 200, editable: true },
     { field: "date", headerName: "date", width: 200, editable: true },
-    { field: "nameContact", headerName: "Name Contact", width: 200, editable: true },
-    { field: "phoneContact", headerName: "Phone contact", width: 200, editable: true },
-    { field: "bedRoom", headerName: "Bed room", width: 200, editable: true },
-    { field: "bathRoom", headerName: "Bath room", width: 200, editable: true },
+    { field: "direct", headerName: "Direction", width: 200, editable: true },
+    { field: "district", headerName: "District", width: 200, editable: true },
+    { field: "province", headerName: "Province", width: 200, editable: true },
+    { field: "street", headerName: "Street", width: 200, editable: true },
+    { field: "ward", headerName: "Ward", width: 200, editable: true },
+    { field: "floor", headerName: "Floor", width: 200, editable: true },
+    { field: "juridical", headerName: "Juridical", width: 200, editable: true },
+    { field: "bedroom", headerName: "Bedroom", width: 200, editable: true },
+    { field: "length", headerName: "Length", width: 200, editable: true },
+    { field: "width", headerName: "Width", width: 200, editable: true },
+    { field: "kitchen", headerName: "Kitchen", width: 200, editable: true },
+    { field: "parking", headerName: "Parking", width: 200, editable: true },
+    { field: "terrace", headerName: "Terrace", width: 200, editable: true },
     {
       field: "actions",
       type: "actions",
@@ -223,15 +250,20 @@ const Page = () => {
   ];
 
   const getData = async () => {
-    const response = await fetch("http://localhost:8080/posts/findPostsCrawler", {
-      method: "GET",
+    const response = await fetch("http://localhost:8080/posts/findPage", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        limit: 100,
+        page: 0,
+      }),
     });
     const data = await response.json();
-    console.log(data);
-    setRows(data);
+
+    setRows(data.content);
+    console.log(data.content);
   };
 
   useEffect(() => {
@@ -255,7 +287,7 @@ const Page = () => {
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
                 <Typography variant="h4">Post Crawl</Typography>
-                <Stack alignItems="center" direction="row" spacing={1}>
+                {/* <Stack alignItems="center" direction="row" spacing={1}>
                   <Button
                     color="inherit"
                     startIcon={
@@ -276,10 +308,10 @@ const Page = () => {
                   >
                     Export
                   </Button>
-                </Stack>
+                </Stack> */}
               </Stack>
               <div>
-                <Button
+                {/* <Button
                   startIcon={
                     <SvgIcon fontSize="small">
                       <PlusIcon />
@@ -288,7 +320,7 @@ const Page = () => {
                   variant="contained"
                 >
                   Add
-                </Button>
+                </Button> */}
               </div>
             </Stack>
             <Box
