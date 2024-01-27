@@ -40,7 +40,7 @@
   ```
 #### Run app
 ```sh
-python app.y
+python app.py
 ```
 
 ## Run FrontEnd
