@@ -14,10 +14,10 @@ s.com/idea/download/?section=windows)
 	``
 ## Run BackEnd
 ```sh
-- chuột phải vào thư mục backend, chọn "open with Itelliji IDEA"
-- build project backend bằng công cụ Itelliji IDEA
+- Chuột phải vào thư mục backend, chọn "open with Itelliji IDEA"
+- Build project backend bằng công cụ Itelliji IDEA
 - Itelliji IDEA sẽ tự động install thư viện bằng Maven
-nhấn "run" chương trình backen
+- Nhấn "run" chương trình backen
 ```
 ### Run BackEnd Nodejs ( FinSight )
 #### Tạo môi trường env
@@ -26,7 +26,7 @@ nhấn "run" chương trình backen
   ```sh
   python3 -m venv env
   ```
-  - Activate môi trường :
+  - Active môi trường :
   
   *Window*
   ```sh
