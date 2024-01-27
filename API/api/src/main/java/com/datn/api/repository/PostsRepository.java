@@ -3,6 +3,7 @@ package com.datn.api.repository;
 import com.datn.api.model.Posts;
 import com.datn.api.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,5 +19,10 @@ public interface PostsRepository extends MongoRepository<Posts, String> {
     List<Posts> findPostsByUserIdIsEmpty();
     List<Posts> findPostsByUserIdNull();
     List<Posts> findPostsByUserIdNotNull();
-    List<Posts> findPostsByTitleLike(String title);
+    Page<Posts> findPostsByTitleLike(String title, Pageable pageable);
+
+    @Query("{'title': { $regex: ?0, $options: 'i' }, 'price': { $lte: ?1 }, "
+            + "?#{ ( #province != null) ? {'province': ?#province} : {} }")
+    Page<Posts> findByTitleAndPriceAndProvince(
+            String title, double price, String province, Pageable pageable);
 }

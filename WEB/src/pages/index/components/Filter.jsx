@@ -1,12 +1,12 @@
 import { memo } from "react";
-import data from "../../../utils/data/data.json";
+import dataDe from "../../../utils/data/data.json";
 import { Select } from "../../../components/Select";
 
 export const Filter = memo(
     ({ handleSubmit, handleChangeDataFilter, dataFilter }) => {
         return (
             <div className="filter p-4">
-                <form className="form row" onSubmit={handleSubmit}>
+                <div className="form row" >
                     <div className="search col-4 px-0">
                         <input
                             type="text"
@@ -27,7 +27,7 @@ export const Filter = memo(
                                 <Select
                                     defaultName="Price"
                                     defaultValue={0}
-                                    listItems={data.price}
+                                    listItems={dataDe.price}
                                     changeSelect={handleChangeDataFilter}
                                     keyName="price"
                                 />
@@ -36,7 +36,7 @@ export const Filter = memo(
                                 <Select
                                     defaultName="Square"
                                     defaultValue={0}
-                                    listItems={data.square}
+                                    listItems={dataDe.square}
                                     changeSelect={handleChangeDataFilter}
                                     keyName="square"
                                 />
@@ -45,7 +45,7 @@ export const Filter = memo(
                                 <Select
                                     defaultName="Direct"
                                     defaultValue=""
-                                    listItems={data.direct}
+                                    listItems={dataDe.direct}
                                     changeSelect={handleChangeDataFilter}
                                     keyName="direct"
                                 />
@@ -56,7 +56,7 @@ export const Filter = memo(
                                 <Select
                                     defaultName="City/Province"
                                     defaultValue=""
-                                    listItems={data.province}
+                                    listItems={dataDe.province}
                                     changeSelect={handleChangeDataFilter}
                                     keyName="province"
                                 />
@@ -83,11 +83,11 @@ export const Filter = memo(
                     </div>
                     <button
                         className="btn btn-primary btn-search col-2"
-                        type="submit"
+                        onClick={handleSubmit}
                     >
                         <div>Search</div>
                     </button>
-                </form>
+                </div>
             </div>
         );
     }

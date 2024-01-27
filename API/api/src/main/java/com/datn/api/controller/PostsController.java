@@ -32,17 +32,25 @@ public class PostsController {
     }
 
     @PostMapping("/posts/findPage")
-    public ResponseEntity<Page<Posts>> getAllUsers1(@RequestBody PageDto requestDto) {
+    public ResponseEntity<Page<Posts>> getFindPage(@RequestBody PageDto requestDto) {
 
         Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
         Page<Posts> pages = postsRepository.findAllByOrderByDateDesc(pageable);
                 return ResponseEntity.ok(pages);
     }
+//    @PostMapping("/posts/findPage")
+//    public ResponseEntity<Page<Posts>> getSearch(@RequestBody PageDto requestDto) {
+//
+//        Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
+//        Page<Posts> pages = postsRepository.findByTitleAndPriceAndProvince(pageable);
+//        return ResponseEntity.ok(pages);
+//    }
 
     @PostMapping("/posts/findByTitle")
-    public ResponseEntity<List<Posts>> findByTitle(@RequestBody SearchDto requestDto) {
+    public ResponseEntity<Page<Posts>> findByTitle(@RequestBody SearchDto requestDto) {
 
-        List<Posts> pages = postsRepository.findPostsByTitleLike(requestDto.getTitle());
+        Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
+        Page<Posts> pages = postsRepository.findPostsByTitleLike(requestDto.getTitle(), pageable);
         return ResponseEntity.ok(pages);
     }
 

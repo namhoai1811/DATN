@@ -23,6 +23,20 @@ export const getAllPost = createAsyncThunk(
   }
 );
 
+export const getFindPost = createAsyncThunk(
+  "post/getFindPost",
+  async (params, thunkAPI) => {
+    try {
+      const rest = await axiosClient("post", "posts/findByTitle", params, {});
+      console.log("rest.data");
+      console.log(rest.data);
+      return rest.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const getPost = createAsyncThunk(
   "post/getPost",
   async (params, thunkAPI) => {
@@ -99,6 +113,28 @@ export const postSlice = createSlice({
         // state.pageSize = action.payload.data.pageable.pageSize;
         // state.totalPages = action.payload.data.totalPages;
       })
+      .addCase(getFindPost.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getFindPost.rejected, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;
+        state.code = action.payload.code;
+      })
+      .addCase(getFindPost.fulfilled, (state, action) => {
+        state.loading = false;
+        state.message = action.payload.message;
+        state.code = action.payload.code;
+        console.log(action.payload);
+        state.listItem = action.payload.content;
+        state.pageNumber = action.payload.pageable.pageNumber;
+        state.pageSize = action.payload.pageable.pageSize;
+        state.totalPages = action.payload.totalPages;
+        // state.listItem = action.payload.data.content;
+        // state.pageNumber = action.payload.data.pageable.pageNumber;
+        // state.pageSize = action.payload.data.pageable.pageSize;
+        // state.totalPages = action.payload.data.totalPages;
+      })
       .addCase(getPost.pending, (state) => {
         state.loading = true;
       })
@@ -112,7 +148,7 @@ export const postSlice = createSlice({
         state.message = action.payload.message;
         state.code = action.payload.code;
         state.item = action.payload;
-        console.log(action.payload)
+        console.log(action.payload);
       });
     //   .addCase(getListRecommendation.pending, (state) => {
     //     state.loading = true;

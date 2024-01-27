@@ -4,4 +4,6 @@ package com.datn.api.dto;
 @lombok.ToString
 public class SearchDto {
     private String title;
+    private int limit;
+    private int page;
 }
