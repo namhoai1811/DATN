@@ -58,7 +58,7 @@ cd WEB
   	```sh
 	npm start 
 	```
-## Brower show on localhost:3000
+## Brower show on localhost:3001
 
 ```sh
 cd FE
