@@ -17,7 +17,7 @@
 - Itelliji IDEA sẽ tự động install thư viện bằng Maven
 - Nhấn "run" chương trình backen
 ```
-### Run BackEnd Nodejs ( FinSight )
+### Run BackEnd Python ( FinSight )
 #### Tạo môi trường env
 - **Dùng venv** 
   - Tạo môi trường :
