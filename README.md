@@ -1,9 +1,7 @@
 # Cài đặt môi trường
 - Cài đặt Java17 : https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html
 - Cài đặt công cụ Nodejs: https://nodejs.org/en/download
-- Cài đặt các IDE (khuyến khích môi trường VS Code ( https://code.vis
-ualstudio.com/download) và Itelliji IDEA (https://www.jetbrain
-s.com/idea/download/?section=windows)
+- Cài đặt các IDE (khuyến khích môi trường VS Code ( https://code.visualstudio.com/download) và Itelliji IDEA (https://www.jetbrains.com/idea/download/?section=windows)
 # Cài đặt và chạy ứng dụng
 - Clone repository :
   	```sh
