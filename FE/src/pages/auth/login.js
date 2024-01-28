@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
-  Alert,
   Box,
   Button,
   FormHelperText,
@@ -19,11 +18,13 @@ import {
 import { useAuth } from "src/hooks/use-auth";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
 
-
 const Page = () => {
   const router = useRouter();
   const auth = useAuth();
   const [method, setMethod] = useState("email");
+  const [email, setEmail] = useState("");
+  const [passWord, setPassWord] = useState("");
+  const [flag, setFlag] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -37,9 +38,10 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        let email = values.email;
-        let passWord = values.password;
-        const response = await fetch("http://localhost:8080/auth/login", {
+        // let email1 = values.email;
+        // let passWord1 = values.password;
+        console.log(email + passWord);
+        const response = await fetch("http://localhost:8080/auth/login1", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -50,8 +52,8 @@ const Page = () => {
           }),
         });
         const data = await response.json();
+        console.log(data);
         window.sessionStorage.setItem("userInfo", data);
-        
 
         // await auth.signIn(values.email, values.password);
 
@@ -61,7 +63,7 @@ const Page = () => {
           console.error(err);
         }
         auth.skip();
-        router.push('/');
+        router.push("/");
       } catch (err) {
         helpers.setStatus({ success: false });
         helpers.setErrors({ submit: err.message });
@@ -78,6 +80,51 @@ const Page = () => {
     auth.skip();
     router.push("/");
   }, [auth, router]);
+
+  const signIn = async () => {
+    console.log(email + passWord);
+
+    const response = await fetch("http://localhost:8080/loginAdmin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        passWord: passWord,
+      }),
+    });
+    // const data = response.json();
+    console.log(response);
+
+    if (response.status != 204) {
+      try {
+        window.sessionStorage.setItem("authenticated", "true");
+      } catch (err) {
+        console.error(err);
+      }
+      auth.skip();
+      router.push("/");
+    } else {
+      setFlag(true);
+    }
+
+    // const user = {
+    //   id: "5e86809283e28b96d2d38537",
+    //   avatar: "/assets/avatars/avatar-anika-visser.png",
+    //   name: "Anika Visser",
+    //   email: "anika.visser@devias.io",
+    // };
+
+    // dispatch({
+    //   type: HANDLERS.SIGN_IN,
+    //   payload: user,
+    // });
+  };
+
+  const handleLogin = useCallback(() => {
+    signIn();
+  });
 
   return (
     <>
@@ -124,35 +171,35 @@ const Page = () => {
               <form noValidate onSubmit={formik.handleSubmit}>
                 <Stack spacing={3}>
                   <TextField
-                    error={!!(formik.touched.email && formik.errors.email)}
+                    // error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
-                    helperText={formik.touched.email && formik.errors.email}
+                    // helperText={formik.touched.email && formik.errors.email}
                     label="Email Address"
                     name="email"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
+                    // onBlur={formik.handleBlur}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    value={formik.values.email}
+                    value={email}
                   />
                   <TextField
-                    error={!!(formik.touched.password && formik.errors.password)}
+                    // error={!!(formik.touched.password && formik.errors.password)}
                     fullWidth
-                    helperText={formik.touched.password && formik.errors.password}
+                    // helperText={formik.touched.password && formik.errors.password}
                     label="Password"
                     name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
+                    // onBlur={formik.handleBlur}
+                    onChange={(e) => setPassWord(e.target.value)}
                     type="password"
-                    value={formik.values.password}
+                    value={passWord}
                   />
                 </Stack>
-                <FormHelperText sx={{ mt: 1 }}>Optionally you can skip.</FormHelperText>
-                {formik.errors.submit && (
+                {/* <FormHelperText sx={{ mt: 1 }}>Optionally you can skip.</FormHelperText> */}
+                {flag && (
                   <Typography color="error" sx={{ mt: 3 }} variant="body2">
-                    {formik.errors.submit}
+                    email or password is incorrect
                   </Typography>
                 )}
-                <Button fullWidth size="large" sx={{ mt: 3 }} type="submit" variant="contained">
+                <Button fullWidth size="large" sx={{ mt: 3 }} onClick={signIn} variant="contained">
                   Continue
                 </Button>
                 <Button fullWidth size="large" sx={{ mt: 3 }} onClick={handleSkip}>

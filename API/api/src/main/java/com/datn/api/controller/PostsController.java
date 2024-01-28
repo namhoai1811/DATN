@@ -35,7 +35,7 @@ public class PostsController {
     public ResponseEntity<Page<Posts>> getFindPage(@RequestBody PageDto requestDto) {
 
         Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
-        Page<Posts> pages = postsRepository.findAllByOrderByDateDesc(pageable);
+        Page<Posts> pages = postsRepository.findAllByOrderByUserIdDescDateDesc(pageable);
                 return ResponseEntity.ok(pages);
     }
 //    @PostMapping("/posts/findPage")
@@ -50,7 +50,7 @@ public class PostsController {
     public ResponseEntity<Page<Posts>> findByTitle(@RequestBody SearchDto requestDto) {
 
         Pageable pageable = PageRequest.of(requestDto.getPage() , requestDto.getLimit());
-        Page<Posts> pages = postsRepository.findPostsByTitleLike(requestDto.getTitle(), pageable);
+        Page<Posts> pages = postsRepository.findPostsByTitleLikeOrderByDateDesc(requestDto.getTitle(), pageable);
         return ResponseEntity.ok(pages);
     }
 

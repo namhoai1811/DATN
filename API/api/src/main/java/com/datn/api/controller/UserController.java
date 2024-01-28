@@ -32,9 +32,8 @@ public class UserController {
         this.userRepository = userRepository;
         this.userInfoRepository = userInfoRepository;
     }
-
-    @PostMapping("auth/login")
-    public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
+    @PostMapping("loginAdmin")
+    public ResponseEntity login1(@RequestBody UserDto.RequestDto requestDto) {
 
         User user = userFacade.userQueryByUserName(requestDto.getEmail());
         if(user==null )
@@ -42,6 +41,40 @@ public class UserController {
             return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
         if(user.getEmail().equals(requestDto.getEmail())&&user.getPassWord().equals(requestDto.getPassWord()))
             return ResponseEntity.ok(user);
+        return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
+    }
+
+    @PostMapping("auth/login")
+    public ResponseEntity login(@RequestBody UserDto.RequestDto requestDto) {
+
+        User user = userFacade.userQueryByUserName(requestDto.getEmail());
+            RegisterDto.ResponseDto res = new RegisterDto.ResponseDto();
+        if(user==null )
+//            return ResponseEntity.ok("user or password fail");
+            return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
+        if(user.getEmail().equals(requestDto.getEmail())&&user.getPassWord().equals(requestDto.getPassWord()))
+        {
+
+            res.setId(user.getId());
+            res.setPhone(user.getEmail());
+            res.setPassWord(user.getPassWord());
+            res.setRole(user.getRole());
+
+            Optional<UserInfo> userInfo = this.userInfoRepository.findById(user.getId());
+
+            if(userInfo.isPresent()) {
+                res.setEmail(userInfo.get().getEmail());
+                res.setFirstName(userInfo.get().getFirstName());
+                res.setLastName(userInfo.get().getLastName());
+                res.setLocation(userInfo.get().getLocation());
+                res.setPhone(userInfo.get().getPhone());
+                res.setCitizenIdentification(userInfo.get().getCitizenIdentification());
+            } else {
+                return ResponseEntity.ok("The posts with id: " + userInfo + " was not found.");
+            }
+            return ResponseEntity.ok(res);
+        }
+
         return new ResponseEntity<>("phone or password fail" , HttpStatus.NO_CONTENT);
     }
 
@@ -64,6 +97,40 @@ public class UserController {
         RegisterDto.ResponseDto res = new RegisterDto.ResponseDto();
         res.setId(newUser.getId());
         res.setEmail(newUser.getEmail());
+        res.setPassWord(newUser.getPassWord());
+        res.setRole(newUser.getRole());
+
+        res.setFirstName(newUserInfo.getFirstName());
+        res.setLastName(newUserInfo.getLastName());
+        res.setLocation(newUserInfo.getLocation());
+        res.setPhone(newUserInfo.getPhone());
+        res.setCitizenIdentification(newUserInfo.getCitizenIdentification());
+
+        return ResponseEntity.status(201).body(res);
+    }
+
+    @PostMapping("auth/registerUser")
+    public ResponseEntity<RegisterDto.ResponseDto> registerUser(@RequestBody RegisterDto.RequestDto requestDto) {
+
+        User user = new User();
+        user.setEmail(requestDto.getPhone());
+        user.setPassWord(requestDto.getPassWord());
+        user.setRole(requestDto.getRole());
+        User newUser = userRepository.save(user);
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(newUser.getId());
+        userInfo.setEmail(newUser.getEmail());
+        userInfo.setPhone(requestDto.getPhone());
+        userInfo.setLocation(requestDto.getLocation());
+        userInfo.setCitizenIdentification(requestDto.getCitizenIdentification());
+        userInfo.setFirstName(requestDto.getFirstName());
+        userInfo.setLastName(requestDto.getLastName());
+        UserInfo newUserInfo = userInfoRepository.save(userInfo);
+//
+        RegisterDto.ResponseDto res = new RegisterDto.ResponseDto();
+        res.setId(newUser.getId());
+        res.setEmail(requestDto.getEmail());
         res.setPassWord(newUser.getPassWord());
         res.setRole(newUser.getRole());
 

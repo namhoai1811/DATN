@@ -54,30 +54,23 @@ export const getListRecommendation = createAsyncThunk(
   "post/getListRecommendation",
   async (params, thunkAPI) => {
     const data = {
-      nNeighbors: 8,
-      id: params.id,
+      title: params.title,
       description: params.description,
-      square: params.square,
-      price: Number(params.price),
-      direct: params.direction,
-      juridical: params.juridical,
-      street: params.street,
-      ward: params.ward,
-      district: params.district,
       province: params.province,
-      bedroom: params.bedroom,
-      kitchen: params.kitchen,
-      parking: params.parking,
-      floor: params.floor,
     };
+    console.log("gợi ý");
+
+    console.log(params);
     try {
       const rest = await axiosClient(
         "post",
-        "get-list-similar-estates",
+        "post_data",
         data,
         {},
-        "http://localhost:80"
+        "http://localhost:5000"
       );
+      console.log("gợi ý 1");
+      console.log(rest.data);
       return rest.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -149,14 +142,16 @@ export const postSlice = createSlice({
         state.code = action.payload.code;
         state.item = action.payload;
         console.log(action.payload);
+      })
+      .addCase(getListRecommendation.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getListRecommendation.fulfilled, (state, action) => {
+        state.loading = false;
+        state.listRecommendation = action.payload;
+        console.log("action.payload");
+        console.log(action.payload);
       });
-    //   .addCase(getListRecommendation.pending, (state) => {
-    //     state.loading = true;
-    //   })
-    //   .addCase(getListRecommendation.fulfilled, (state, action) => {
-    //     state.loading = false;
-    //     state.listRecommendation = action.payload;
-    //   });
   },
 });
 

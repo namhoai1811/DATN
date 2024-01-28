@@ -143,6 +143,14 @@ const Page = () => {
     { field: "firstName", headerName: "First Name", width: 180, editable: true },
     { field: "lastName", headerName: "Last Name", width: 120, editable: true },
     {
+      field: "phone",
+      headerName: "Phone",
+      // type: "date",
+      width: 180,
+      editable: true,
+    },
+
+    {
       field: "email",
       headerName: "Email",
       // type: "number",
@@ -154,13 +162,6 @@ const Page = () => {
     {
       field: "location",
       headerName: "Location",
-      // type: "date",
-      width: 180,
-      editable: true,
-    },
-    {
-      field: "phone",
-      headerName: "Phone",
       // type: "date",
       width: 180,
       editable: true,

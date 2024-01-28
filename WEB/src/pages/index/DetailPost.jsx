@@ -15,7 +15,8 @@ export const DetailPost = memo(() => {
         dispatch(getPost(id))
             .then(unwrapResult)
             .then((res) => {
-                dispatch(getListRecommendation(res.data));
+                // console.log(res)
+                dispatch(getListRecommendation(res));
             });
     }, []);
 

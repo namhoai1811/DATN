@@ -3,6 +3,7 @@ import { Input } from "../../../components/Input";
 import { Select } from "../../../components/Select";
 import { TextArea } from "../../../components/TextArea";
 import { storage } from "../../../firebase";
+import { storage1 } from "../../../service/storage";
 
 import {
   ref,
@@ -13,8 +14,11 @@ import {
 import data from "../../../utils/data/data.json";
 
 export const MainPost = memo(() => {
+  const firstName = storage1.getItem("firstName");
+  const lastName = storage1.getItem("lastName");
+  const phone = storage1.getItem("phone");
   const [postInfo, setPostInfo] = useState({
-    type: 1,
+    type: 2,
     userId: 1,
     title: "",
     description: "",
@@ -55,21 +59,35 @@ export const MainPost = memo(() => {
 
   const handleClose1 = async () => {
     console.log(postInfo);
+    console.log(new Date());
+    // Create a new Date object
+    const currentDate = new Date();
+
+    // Get the day, month, and year from the Date object
+    const day = currentDate.getDate().toString().padStart(2, "0");
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, "0"); // Note: Months are zero-based
+    const year = currentDate.getFullYear();
+
+    // Create the formatted date string in "DD/MM/YYYY" format
+    const formattedDate = `${day}/${month}/${year}`;
+
+    console.log(firstName + lastName + phone);
+
     const response = await fetch("http://localhost:8080/posts/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        type: postInfo.type,
+        type: 3,
         userId: postInfo.userId,
         title: postInfo.title,
         description: postInfo.description,
         price: postInfo.price,
         square: postInfo.square,
-        name_contact: postInfo.name_contact,
-        phone_contact: postInfo.phone_contact,
-        date: new Date(),
+        name_contact: firstName + " " + lastName,
+        phone_contact: phone,
+        date: formattedDate,
         direct: postInfo.direct,
         district: postInfo.district,
         province: postInfo.province,
@@ -371,7 +389,7 @@ export const MainPost = memo(() => {
             className="form-control"
             multiple
           />
-          {postInfo.images  &&
+          {postInfo.images &&
             postInfo.images.map((item, key) => (
               <img
                 src={item}
@@ -380,7 +398,6 @@ export const MainPost = memo(() => {
                 className="image-post m-2"
               />
             ))}
-            
         </div>
         <button className="btn btn-primary mt-4" onClick={uploadFile}>
           Upload

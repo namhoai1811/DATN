@@ -75,9 +75,9 @@ export const Login = memo(() => {
                     } else {
                         showToastSuccess("login success !");
                         console.log(res)
-                        // setTimeout(() => {
-                        //     navigate("/home");
-                        // }, 3000);
+                        setTimeout(() => {
+                            navigate("/home");
+                        }, 3000);
                     }
 
 

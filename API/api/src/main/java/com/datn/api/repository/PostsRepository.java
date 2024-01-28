@@ -16,10 +16,14 @@ public interface PostsRepository extends MongoRepository<Posts, String> {
     List<Posts> findByUserId(String userId);
     Page<Posts> findAllByOrderByDateDesc(Pageable pageable);
 
+    Page<Posts> findAllByOrderByUserIdDescDateDesc(Pageable pageable);
+
     List<Posts> findPostsByUserIdIsEmpty();
     List<Posts> findPostsByUserIdNull();
     List<Posts> findPostsByUserIdNotNull();
     Page<Posts> findPostsByTitleLike(String title, Pageable pageable);
+
+    Page<Posts> findPostsByTitleLikeOrderByDateDesc(String title, Pageable pageable);
 
     @Query("{'title': { $regex: ?0, $options: 'i' }, 'price': { $lte: ?1 }, "
             + "?#{ ( #province != null) ? {'province': ?#province} : {} }")

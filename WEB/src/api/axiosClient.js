@@ -1,8 +1,8 @@
 import axios from "axios";
-import { storage } from "../service/storage";
+import { storage1 } from "../service/storage";
 
 const axiosClient = (method, url, data = {}, params = {}, baseURL = "") => {
-    const token = storage.getItem("token");
+    const token = storage1.getItem("token");
     let headers = !!token
         ? {
               Authorization: "Bearer " + token,

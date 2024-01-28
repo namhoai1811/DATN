@@ -6,7 +6,7 @@ import { Filter } from "./components/Filter";
 import { Main } from "./components/Main";
 import dataDe from "../../utils/data/data.json";
 import { Select } from "../../components/Select";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 
 import { getAllPost, getFindPost } from "../../store/slice/postSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,7 +20,8 @@ export const Index = memo(() => {
     direct: "",
     province: "",
   });
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("2");
+  const [text, setText] = useState("");
 
   const [page, setPage] = useState(1);
   const handleChange = (event, value) => {
@@ -54,18 +55,30 @@ export const Index = memo(() => {
     console.log(dataFilter);
   });
 
-  const handleSubmit = useCallback((event) => {
-    // alert("aa");
+  // const searchPost = useCallback(() => {
+  //   alert(text);
+  //   console.log("write code submit");
+  //   console.log(text);
+  //   dispatch(
+  //     getFindPost({
+  //       title: "Hà Nội",
+  //       page: 0,
+  //       limit: 10,
+  //     })
+  //   );
+  // }, []);
+
+  const searchPost = async () => {
     console.log("write code submit");
-    console.log(title);
+    console.log(dataFilter);
     dispatch(
       getFindPost({
-        title: title,
+        title: dataFilter.title,
         page: 0,
         limit: 10,
       })
     );
-  }, []);
+  };
 
   useEffect(() => {
     dispatch(
@@ -79,98 +92,12 @@ export const Index = memo(() => {
   return (
     <div className="index">
       <Header />
-      {/* <Filter
+      <Filter
         dataFilter={dataFilter}
         handleChangeDataFilter={handleChangeDataFilter}
-        handleSubmit={handleSubmit}
-      /> */}
-      <div className="filter p-4">
-        <div className="form row">
-          <div className="search col-4 px-0">
-            <input
-              type="text"
-              placeholder="enter for keyword search"
-              className="form-control"
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-            />
-            <TextField
-              autoFocus
-              type="text"
-              fullWidth
-              variant="standard"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className="row col-6">
-            <div className="row my-1">
-              <div className="col-4">
-                <Select
-                  defaultName="Price"
-                  defaultValue={0}
-                  listItems={dataDe.price}
-                  changeSelect={handleChangeDataFilter}
-                  keyName="price"
-                />
-              </div>
-              <div className="col-4">
-                <Select
-                  defaultName="Square"
-                  defaultValue={0}
-                  listItems={dataDe.square}
-                  changeSelect={handleChangeDataFilter}
-                  keyName="square"
-                />
-              </div>
-              <div className="col-4">
-                <Select
-                  defaultName="Direct"
-                  defaultValue=""
-                  listItems={dataDe.direct}
-                  changeSelect={handleChangeDataFilter}
-                  keyName="direct"
-                />
-              </div>
-            </div>
-            <div className="row my-1">
-              <div className="col-4">
-                <Select
-                  defaultName="City/Province"
-                  defaultValue=""
-                  listItems={dataDe.province}
-                  changeSelect={handleChangeDataFilter}
-                  keyName="province"
-                />
-              </div>
-              {/* <div className="col-4">
-                                <Select
-                                    defaultName="District"
-                                    defaultValue=""
-                                    listItems={data.province}
-                                    changeSelect={handleChangeDataFilter}
-                                    keyName="province"
-                                />
-                            </div>
-                            <div className="col-4">
-                                <Select
-                                    defaultName="Ward"
-                                    defaultValue=""
-                                    listItems={data.province}
-                                    changeSelect={handleChangeDataFilter}
-                                    keyName="province"
-                                />
-                            </div> */}
-            </div>
-          </div>
-          <button
-            className="btn btn-primary btn-search col-2"
-            onClick={handleSubmit}
-          >
-            <div>Search</div>
-          </button>
-        </div>
-      </div>
+        handleSubmit={searchPost}
+      />
+
       <div className="content">
         <Main data={data} />
       </div>

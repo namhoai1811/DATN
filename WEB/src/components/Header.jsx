@@ -3,13 +3,13 @@ import { IMG_APP, IMG_BANNER } from "../images";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/slice/authSlice";
-import { storage } from "../service/storage";
+import { storage1 } from "../service/storage";
 
 export const Header = memo(() => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const lastName = useSelector((state) => state.auth.user.lastName);
-    const isAuthenticate = !!storage.getItem("token");
+    const isAuthenticate = !!storage1.getItem("token");
     console.log("isAuthenticate" + isAuthenticate)
     const handleLogout = useCallback(() => {
         logout();

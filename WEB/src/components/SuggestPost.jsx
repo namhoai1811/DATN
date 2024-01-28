@@ -3,18 +3,19 @@ import { Carousel, Card, Stack, Button } from "react-bootstrap";
 import { filterPrice } from "../service/filter";
 import { getAllPost } from "../store/slice/postSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { IMG_HOME_DEFAULT } from "../images";
 export const SuggestPost = memo(() => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      getAllPost({
-        page: 1,
-        limit: 10,
-      })
-    );
-  }, []);
-  const reviews = useSelector((state) => state.post.listItem);
-//   const reviews = useSelector((state) => state.post.listItem);
+  // useEffect(() => {
+  //   dispatch(
+  //     getAllPost({
+  //       page: 1,
+  //       limit: 10,
+  //     })
+  //   );
+  // }, []);
+  const reviews = useSelector((state) => state.post.listRecommendation);
+  //   const reviews = useSelector((state) => state.post.listItem);
   console.log(reviews);
 
   return (
@@ -23,7 +24,7 @@ export const SuggestPost = memo(() => {
       <div className="suggest-post1 bg-opacity-25 container-fluid">
         <Carousel style={{ height: 400 }}>
           {reviews.map((review, index) => (
-            <Carousel.Item style={{ height: 400 }} key={index}>
+            <Carousel.Item style={{ height: 380 }} key={index}>
               <Stack
                 direction="horizontal"
                 className="h-100 justify-content-center align-items-center"
@@ -32,15 +33,17 @@ export const SuggestPost = memo(() => {
                 <Card
                   style={{
                     height: 350,
-                    width: "25%",
+                    width: "40%",
                     fontSize: "16px",
                   }}
                 >
                   <Card.Body>
-                    <Card.Img
-                      variant="top"
-                      src={review.link_image.split(",")[0]}
-                    />
+                    {/* <Card.Img variant="top" src={review.link_image} /> */}
+                    {review.link_image ? (
+                      <Card.Img variant="top" src={review.link_image} />
+                    ) : (
+                      <Card.Img variant="top" src={IMG_HOME_DEFAULT} />
+                    )}
                     <a
                       href={review.url_page}
                       className="title-suggest truncate"

@@ -1,8 +1,8 @@
 import { Outlet, Navigate } from "react-router-dom";
-import { storage } from "../service/storage";
+import { storage1 } from "../service/storage";
 
 export const AuthLayout = () => {
-  const isAuthentication = !!storage.getItem("token");
+  const isAuthentication = !!storage1.getItem("token");
   // const isAuthentication = false;
   if (!isAuthentication) {
     return <Outlet />;
