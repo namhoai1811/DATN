@@ -256,7 +256,7 @@ const Page = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        limit: 100,
+        limit: 1000,
         page: 0,
       }),
     });
